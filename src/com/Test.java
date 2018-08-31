@@ -10,5 +10,6 @@ public class Test {
 		System.out.println("My GitHub!");
 		System.out.println("Hello World!");
 		System.out.println("Java");
+		System.out.println("Java");
 	}
 }
