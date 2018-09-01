@@ -9,6 +9,5 @@ public class Test {
 	public static void main(String[] args) {
 		System.out.println("My GitHub is Very Good!");
 		System.out.println("Java is Very Good!");
-		System.out.println("Test");
 	}
 }
