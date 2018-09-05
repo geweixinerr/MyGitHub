@@ -9,6 +9,6 @@ public class Test {
 	public static void main(String[] args) {
 		System.out.println("My GitHub is Very Good!");
 		System.out.println("Java is Very Good! OK!");
-		System.out.println("我是Git SmartGit!");
+		System.out.println("我是Git SmartGit!OK!");
 	}
 }
