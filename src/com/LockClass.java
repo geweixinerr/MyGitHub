@@ -3,6 +3,7 @@ package com;
 import java.util.Vector;
 import java.util.concurrent.TimeUnit;
 
+//模拟线程死锁
 public class LockClass {
 
 	public LockClass() {}
@@ -27,7 +28,8 @@ public class LockClass {
 		v.add("葛维新!"); //死锁!
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
+		TimeUnit.SECONDS.sleep(10);
 		LockClass lock = new LockClass();
 		Thread t = new Thread(new Runnable() {
 			
@@ -37,13 +39,17 @@ public class LockClass {
 			}
 		});
 		
+		t.start();
+		
 		Thread t2 = new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
 				// TODO Auto-generated method stub
-				
+				lock.lock2();
 			}
 		});
+		
+		t2.start();
 	}
 }
