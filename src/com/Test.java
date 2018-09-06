@@ -9,7 +9,6 @@ public class Test {
 	public static void main(String[] args) {
 		System.out.println("My GitHub is Very Good!");
 		System.out.println("Java is Very Good! OK!");
-		System.out.println("测试消息推送!");
-		System.out.println("OK!远程编辑!");
+		System.out.println("测试消息推送!测试消息推送!");
 	}
 }
