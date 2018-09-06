@@ -10,5 +10,6 @@ public class Test {
 		System.out.println("My GitHub is Very Good!");
 		System.out.println("Java is Very Good! OK!");
 		System.out.println("测试消息推送!");
+		System.out.println("OK!");
 	}
 }
