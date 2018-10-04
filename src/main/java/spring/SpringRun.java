@@ -31,6 +31,6 @@ public class SpringRun {
 		
 		//集合类
 		List<String> arrayList = (List<String>) context.getBean("listBean");
-		System.out.println("arrayList--->OK" + arrayList);
+		System.out.println("arrayList--->" + arrayList);
 	}
 }
