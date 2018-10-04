@@ -1,9 +1,10 @@
-package spring.reflect;
+package com;
 
 import org.junit.Test;
 
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.FixedValue;
+import spring.reflect.CglibSimple;
 
 public class GglibTest {
 
