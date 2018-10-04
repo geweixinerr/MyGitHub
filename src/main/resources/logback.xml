@@ -5,11 +5,19 @@
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
          <!-- 日志输出的文件的格式  -->  
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%contextName|[%thread] %-5level %logger{80} - %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%contextName|[%thread] %-5level %logger{36} - %msg%n</pattern>
             <charset>UTF-8</charset>
         </encoder>
     </appender>
-    
+   
+   <!-- 
+   additivity属性: false：表示只用当前logger的appender-ref。
+                   true：表示当前logger的appender-ref和rootLogger的appender-ref都有效。
+    --> 
+   <logger name="spring.factory.TransFactory" level="INFO" additivity="false">
+         <appender-ref ref="STDOUT"/>
+   </logger>   
+   
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
     </root>
