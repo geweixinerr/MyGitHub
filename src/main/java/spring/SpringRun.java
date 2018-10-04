@@ -19,6 +19,6 @@ public class SpringRun {
 		TransFactory object = (TransFactory) context.getBean(TransFactory.class);
 		TransCashIntf cashObject = object.getInstance();
 		cashObject.moveMoney(null);
-		System.out.println("执行完毕--->success!");
+		System.out.println("执行完毕--->success!ok!");
 	}
 }
