@@ -19,7 +19,6 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
 	<!-- 开启注解扫描 -->
-	<context:annotation-config />
 	<context:component-scan base-package="spring.*" />
 
     <!-- 引入支持LogBack -->
@@ -32,4 +31,16 @@
 		</property>
 	</bean>
 
+    <!-- 集合Bean工厂 -->
+    <bean id="listBean" class="org.springframework.beans.factory.config.ListFactoryBean">
+        <property name="targetListClass" value="java.util.ArrayList"/>
+        <property name="singleton" value="false"/>
+        <property name="sourceList">
+           <list>
+             <value>Java</value>
+             <value>.Net</value>
+           </list>
+        </property>
+    </bean>  
+    
 </beans>
