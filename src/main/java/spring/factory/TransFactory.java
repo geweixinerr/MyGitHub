@@ -14,15 +14,19 @@ public class TransFactory {
 	private static final Logger LOGGER = LoggerFactory.getLogger(TransFactory.class);
 	
 	@Autowired
-	@Qualifier("impl1")
+	@Qualifier("impl2")
 	private TransCashIntf cash;
 
 	public TransFactory() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void getInstance() {
-		LOGGER.info("启动获取实例!");
-		cash.moveMoney(null);
+	/**
+	 * @author Administrator 返回实例对象
+	 * **/
+	public TransCashIntf getInstance() {
+		LOGGER.info("启动获取实例!");		
+		TransCashIntf instance =  cash;
+		return instance;
 	}
 }

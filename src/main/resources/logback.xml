@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="false">
+    <contextName>mySpring</contextName>  
     <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
          <!-- 日志输出的文件的格式  -->  
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%d{yyyy-MM-dd HH:mm:ss}|%t|%p| %m |%logger:%L%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%contextName|[%thread] %-5level %logger{80} - %msg%n</pattern>
             <charset>UTF-8</charset>
         </encoder>
     </appender>

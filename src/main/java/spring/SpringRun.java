@@ -4,6 +4,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import spring.factory.TransFactory;
+import spring.intf.TransCashIntf;
 
 public class SpringRun {
 
@@ -16,6 +17,8 @@ public class SpringRun {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Spring.xml");
 
 		TransFactory object = (TransFactory) context.getBean(TransFactory.class);
-		object.getInstance();		
+		TransCashIntf cashObject = object.getInstance();
+		cashObject.moveMoney(null);
+		System.out.println("执行完毕--->success!");
 	}
 }
