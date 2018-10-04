@@ -11,8 +11,9 @@ import net.sf.cglib.proxy.MethodProxy;
  **/
 public class CglibSimple {
 
-	public void test() {
+	public String test(String str) {
 		System.out.println("执行目标方法!");
+		return "hello world";
 	}
 
 	public static void main(String[] args) {
@@ -29,6 +30,6 @@ public class CglibSimple {
 		});
 
 		CglibSimple simple = (CglibSimple) enhancer.create();
-		simple.test();
+		simple.test(null);
 	}
 }
