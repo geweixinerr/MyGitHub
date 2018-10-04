@@ -6,10 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import spring.intf.TransCashIntf;
+import spring.intf.AbstractTransCashIntf;
 
 @Service("impl2")
-public class TransCashImplTwo implements TransCashIntf{
+public class TransCashImplTwo extends AbstractTransCashIntf {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(TransCashImplTwo.class);
 

@@ -16,4 +16,9 @@ public interface TransCashIntf {
 	 * @return 移动后的数值
 	 * **/
 	BigDecimal moveMoney(BigDecimal money);
+	
+	/**
+	 * @author Administrator 计算金额
+	 * **/
+	BigDecimal calculateMoney(BigDecimal money);
 }

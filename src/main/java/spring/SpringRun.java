@@ -1,7 +1,5 @@
 package spring;
 
-import java.util.List;
-
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -18,7 +16,7 @@ public class SpringRun {
 
 	}
 	
-	@SuppressWarnings({ "resource", "unchecked" })
+	@SuppressWarnings({ "resource"})
 	public static void main(String[] args) {
 		//加载Spring配置文件
 		ApplicationContext context = new ClassPathXmlApplicationContext("Spring.xml");//classpath:Spring.xml
@@ -27,10 +25,7 @@ public class SpringRun {
 		TransFactory object = (TransFactory) context.getBean("transFactory");
 		TransCashIntf cashObject = object.getInstance();
 		cashObject.moveMoney(null);
-		System.out.println("执行完毕--->success!ok!");
-		
-		//集合类
-		List<String> arrayList = (List<String>) context.getBean("listBean");
-		System.out.println("arrayList--->" + arrayList);
+		cashObject.calculateMoney(null);
+		System.out.println("执行完毕--->success!");
 	}
 }

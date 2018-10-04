@@ -43,4 +43,11 @@
         </property>
     </bean>  
     
+    <!-- dto类 -->
+    <bean id="studentId" class="spring.bean.Student" name="student">
+         <property name="address" value="江苏镇江"/>
+         <property name="age" value="32"/>
+         <property name="name" value="葛伟新"/>
+    </bean>
+    
 </beans>
