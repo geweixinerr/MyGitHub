@@ -12,7 +12,7 @@ import spring.intf.AbstractTransCashIntf;
 public class TransCashImplTwo extends AbstractTransCashIntf {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(TransCashImplTwo.class);
-
+	
 	public TransCashImplTwo() {
 
 	}
@@ -20,7 +20,6 @@ public class TransCashImplTwo extends AbstractTransCashIntf {
 	@Override
 	public BigDecimal moveMoney(BigDecimal money) {
 		LOGGER.info("执行第二个实现类!");
-		LOGGER.debug("执行第二个实现类!");
 		System.out.println("第二个实现类!");
 		return null;
 	}
