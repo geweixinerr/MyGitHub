@@ -1,16 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>	
 	<groupId>com</groupId>
 	<artifactId>MySpring</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>${project.release.version}</version>
 	<name>Spring Project</name>
 	<description>我的Spring Maven项目</description>
-
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.release.version>0.0.1-SNAPSHOT</project.release.version>
 	</properties>
-
+	
 	<dependencies>
 		<!-- Spring依赖 -->
 		<!-- 1.Spring核心依赖 -->
@@ -137,7 +138,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.0</version> 
+				<version>3.8.0</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
@@ -146,5 +147,32 @@
 			</plugin>
 		</plugins>
 	</build>
+
+    <!-- 部署项目 -->
+	<distributionManagement>
+		<repository>
+			<id>my-deploy-release</id>
+			<name>本地Maven Nexus仓库</name>
+			<url>http://127.0.0.1:8081/repository/maven-releases/</url>
+			<layout>default</layout>		
+		</repository>
+
+		<snapshotRepository>
+			<id>my-deploy-snapshot</id>
+			<name>本地Maven Nexus仓库</name>
+			<url>http://127.0.0.1:8081/repository/maven-snapshots/</url>
+		    <layout>default</layout>		    
+		</snapshotRepository>
+	</distributionManagement>
+     
+	<!-- release版本发布,-P release  -->
+	<profiles>
+	    <profile>
+	        <id>release</id>
+	        <properties>
+	            <project.release.version>2.0</project.release.version>
+	        </properties>
+	    </profile>
+	</profiles>
 
 </project>
