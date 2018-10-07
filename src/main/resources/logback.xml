@@ -1,25 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="false">
-    <contextName>mySpring</contextName>  
-    <!-- 控制台输出 -->
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-         <!-- 日志输出的文件的格式  -->  
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%contextName|[%thread] %-5level %logger{36} - %msg%n</pattern>
-            <charset>UTF-8</charset>
-        </encoder>
-    </appender>
-   
-   <!-- 
-   additivity属性: false：表示只用当前logger的appender-ref。
-                   true：表示当前logger的appender-ref和rootLogger的appender-ref都有效。
-    --> 
-   <logger name="spring.factory.TransFactory" level="INFO" additivity="false">
-         <appender-ref ref="STDOUT"/>
-   </logger>   
-   
-    <root level="INFO">
-        <appender-ref ref="STDOUT"/>
-    </root>
+	<contextName>${contextName}</contextName>
+	<!-- 控制台输出 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- 日志输出的文件的格式 -->
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS}|%contextName|[%thread] %-5level %logger{36} - %msg%n</pattern>
+			<charset>UTF-8</charset>
+		</encoder>
+	</appender>
+
+	<!-- 
+	     additivity属性{
+	         false:表示只用当前logger的appender-ref。 
+	         true:表示当前logger的appender-ref和rootLogger的appender-ref都有效(前提条件为:当前logger-level等级<=rootLogger-level等级)。
+	    }
+     -->
+	<logger name="spring.factory.TransFactory" level="INFO"
+		additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<!-- SQL打印日志 -->
+	<logger name="java.sql.Connection" level="DEBUG" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<logger name="java.sql.PreparedStatement" level="DEBUG" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<logger name="java.sql.ResultSet" level="DEBUG" additivity="false">
+		<appender-ref ref="STDOUT" />
+	</logger>
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+	</root>
 
 </configuration>

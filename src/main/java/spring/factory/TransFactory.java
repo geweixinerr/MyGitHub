@@ -25,7 +25,7 @@ public class TransFactory {
 	 * @author Administrator 返回实例对象
 	 * **/
 	public TransCashIntf getInstance() {
-		LOGGER.info("启动获取实例!");		
+		LOGGER.debug("启动获取实例!");		
 		TransCashIntf instance =  cash;
 		return instance;
 	}

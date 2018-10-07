@@ -1,0 +1,1 @@
+GitHub下载完成后,需要执行mvn eclipse:eclipse 命令初始化构建eclipse工程

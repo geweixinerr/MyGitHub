@@ -1,17 +1,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>	
+	<modelVersion>4.0.0</modelVersion>
 	<groupId>com</groupId>
 	<artifactId>MySpring</artifactId>
 	<version>${project.release.version}</version>
 	<name>Spring Project</name>
 	<description>我的Spring Maven项目</description>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.release.version>0.0.1-SNAPSHOT</project.release.version>
+		<project.release.version>0.0.1-SNAPSHOT</project.release.version>
 	</properties>
-	
+
 	<dependencies>
 		<!-- Spring依赖 -->
 		<!-- 1.Spring核心依赖 -->
@@ -146,33 +146,82 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
+		<!-- 资源属性文件替换 -->
+		<!-- 我们分析下<resource>下面的属性 <directory>: 配置那个目录下的文件通过${key}会被替换成属性值,resource目录下，我们一般放jdbc连接，或配置文件 
+			<includes>：指定那个目录下那个文件 <filtering>：这个配置的意思是过滤上面指定属性文件中的占位符，占位符是${变量名称}这样的形式，maven会自动读取配置文件， 
+			然后解析其中的占位符，使用上面pom文件中定义的属性进行替换 <exclueds>：在resource目录下，有很多文件，但用些文件不希望替换，则可以通过<excluede>指定 
+			<filters>:这里的filters与<profile>的filter意思一样，都是指属性文件地址， 这个如果上面定义<profile>的时候指定了，这里就不需要了，但有些开发习惯是在<profile>不定义，然后在<build>里指定。 -->
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>**/*</include>
+					<!--
+					 <include>*.xml</include> 
+					 <include>init.properties</include> 
+					-->
+				</includes>
+				<filtering>true</filtering>
+				<!-- 排除文件 -->
+			    <!-- 
+				<excludes>
+					<exclude>application.properties</exclude>
+				</excludes>
+			     -->
+			</resource>
+		</resources>
+
+		<finalName>MySpring Project</finalName>
 	</build>
 
-    <!-- 部署项目 -->
+	<!-- 部署项目 -->
 	<distributionManagement>
 		<repository>
 			<id>my-deploy-release</id>
 			<name>本地Maven Nexus仓库</name>
 			<url>http://127.0.0.1:8081/repository/maven-releases/</url>
-			<layout>default</layout>		
+			<layout>default</layout>
 		</repository>
 
 		<snapshotRepository>
 			<id>my-deploy-snapshot</id>
 			<name>本地Maven Nexus仓库</name>
 			<url>http://127.0.0.1:8081/repository/maven-snapshots/</url>
-		    <layout>default</layout>		    
+			<layout>default</layout>
 		</snapshotRepository>
 	</distributionManagement>
-     
-	<!-- release版本发布,-P release  -->
+
+	<!-- release版本发布,-P release -->
 	<profiles>
-	    <profile>
-	        <id>release</id>
-	        <properties>
-	            <project.release.version>2.0</project.release.version>
-	        </properties>
-	    </profile>
+		<profile>
+			<id>release</id>
+			<properties>
+				<project.release.version>2.0</project.release.version>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>dev</id>
+			<build>
+				<filters>
+					<filter>deploy/dev.properties</filter>
+				</filters>
+			</build>
+		</profile>
+
+		<profile>
+			<id>sit</id>
+			<build>
+			    <!-- 
+			    resources和filters，maven中的这两个属性通常是搭配起来使用的，filter这里可以理解为筛选器或者填充器。
+			    filters里面可以配置多个filter，但是会以最后一个为准，所以一般只配置一个filter
+			     -->
+				<filters>
+					<filter>deploy/sit.properties</filter>
+				</filters>
+			</build>
+		</profile>
 	</profiles>
 
 </project>
