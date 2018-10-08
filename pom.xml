@@ -145,6 +145,34 @@
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
+
+           <!-- 打包插件 -->
+           <!--  
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>com.vvvtimes.server.MainServer</mainClass>
+						</manifest>
+					</archive>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+           -->
 		</plugins>
 
 		<!-- 资源属性文件替换 -->
@@ -157,18 +185,11 @@
 				<directory>src/main/resources</directory>
 				<includes>
 					<include>**/*</include>
-					<!--
-					 <include>*.xml</include> 
-					 <include>init.properties</include> 
-					-->
+					<!-- <include>*.xml</include> <include>init.properties</include> -->
 				</includes>
 				<filtering>true</filtering>
 				<!-- 排除文件 -->
-			    <!-- 
-				<excludes>
-					<exclude>application.properties</exclude>
-				</excludes>
-			     -->
+				<!-- <excludes> <exclude>application.properties</exclude> </excludes> -->
 			</resource>
 		</resources>
 
@@ -213,15 +234,36 @@
 		<profile>
 			<id>sit</id>
 			<build>
-			    <!-- 
-			    resources和filters，maven中的这两个属性通常是搭配起来使用的，filter这里可以理解为筛选器或者填充器。
-			    filters里面可以配置多个filter，但是会以最后一个为准，所以一般只配置一个filter
-			     -->
+				<!-- resources和filters，maven中的这两个属性通常是搭配起来使用的，filter这里可以理解为筛选器或者填充器。 
+					filters里面可以配置多个filter，但是会以最后一个为准，所以一般只配置一个filter -->
 				<filters>
 					<filter>deploy/sit.properties</filter>
 				</filters>
 			</build>
 		</profile>
+
+		<!-- 编译JDK1.7 -->
+		<profile>
+			<id>buildJDK1.7</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<version>3.8.0</version>
+						<configuration>
+							<source>1.7</source>
+							<target>1.7</target>
+							<encoding>UTF-8</encoding>
+							<verbose>true</verbose>
+							<fork>true</fork>
+							<executable>c:\Java\jdk1.7.0_80\jdk1.7.0_80\bin\javac</executable>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
 	</profiles>
 
 </project>
