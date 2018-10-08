@@ -255,10 +255,27 @@
 							<source>1.7</source>
 							<target>1.7</target>
 							<encoding>UTF-8</encoding>
-							<verbose>true</verbose>
-							<fork>true</fork>
-							<executable>c:\Java\jdk1.7.0_80\jdk1.7.0_80\bin\javac</executable>
+							<!-- 可以不加 <verbose>true</verbose> <fork>true</fork> <executable>c:\Java\jdk1.7.0_80\jdk1.7.0_80\bin\javac</executable> -->
 						</configuration>
+					</plugin>
+					<!-- 执行BAT命令 -->
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2</version>
+						<executions>
+							<execution>
+								<id>执行Bat批处理命令,install任务阶段</id>
+								<!-- 插件执行阶段(install) -->
+								<phase>install</phase>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>../${project.parent.artifactId}/deploy.bat</executable>
+								</configuration>
+							</execution>
+						</executions>
 					</plugin>
 				</plugins>
 			</build>

@@ -1,0 +1,1 @@
+mvn deploy:deploy-file -DgroupId=xxx -DartifactId=xxxx -Dversion=xxxx -Dpackaging=jar -Dfile=xxxx -Durl=xxx -DrepositoryId=xxx
