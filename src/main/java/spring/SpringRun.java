@@ -27,5 +27,6 @@ public class SpringRun {
 		cashObject.moveMoney(null);
 		cashObject.calculateMoney(null);
 		System.out.println("执行完毕--->success!");
+		
 	}
 }

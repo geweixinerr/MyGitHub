@@ -135,6 +135,26 @@
 	<!-- 添加项目jdk编译插件 -->
 	<build>
 		<plugins>
+			<!-- 
+				tomcat:deploy(部署一个web war包)
+				tomcat:reload(重新加载web war包)
+				tomcat:start(启动tomcat)
+				tomcat:stop(停止tomcat)
+				tomcat:undeploy(停止一个web war包)
+				tomcat:run(启动嵌入式tomcat,并启动当前项目)
+			 -->
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+				   <port>9090</port>
+				   <path>/webApp</path>
+				   <uriEncoding>UTF-8</uriEncoding>
+				   <charset>UTF-8</charset>
+ 				</configuration>
+			</plugin>
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -280,7 +300,54 @@
 				</plugins>
 			</build>
 		</profile>
-
+		
+        <!-- 构建并移动war文件到tomcat webapps目录下 -->
+        <profile>
+            <id>buildWar</id>
+            <build>
+              <plugins>
+                     <plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.8</version>
+						<executions>
+							<execution>
+								<id>执行War包拷贝...</id>
+								<phase>install</phase>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<!-- 这样也行 -->
+							    <configuration>
+									<tasks>
+										<echo>拷贝资源进行中...</echo>
+										<!-- 删除文件 -->
+										<delete file="d:\server\apache-tomcat-7.0.90\webapps\xxx.war" />
+										<!-- 删除目录,包含空目录 -->
+		                                <delete dir="d:\server\apache-tomcat-7.0.90\webapps\xxx目录" includeemptydirs="true"/>		
+										<copy file="d:\eclipse workspace\project\target\xxx.war" 
+										tofile="d:\server\apache-tomcat-7.0.90\webapps\xxx.war" overwrite="true"/>									
+									</tasks> 
+								</configuration>
+							</execution>
+						</executions>
+						<!-- 
+						这样也行
+					    <configuration>
+							<tasks>
+								<echo>拷贝资源进行中...</echo>
+								<delete file="d:\server\apache-tomcat-7.0.90\webapps\xxx.war" />
+                                <delete dir="d:\server\apache-tomcat-7.0.90\webapps\xxx" includeemptydirs="true"/>		
+								<copy file="d:\eclipse workspace\project\target\xxx.war" 
+								tofile="d:\server\apache-tomcat-7.0.90\webapps\xxx.war" overwrite="true"/>									
+							</tasks> 
+						</configuration>
+						 -->
+                      </plugin>
+              </plugins>
+            </build>
+        </profile>
+        
 	</profiles>
 
 </project>
