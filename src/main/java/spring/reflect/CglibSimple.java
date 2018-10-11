@@ -1,8 +1,6 @@
 package spring.reflect;
 
 import java.lang.reflect.Method;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -18,7 +16,11 @@ import net.sf.cglib.proxy.MethodProxy;
  **/
 public class CglibSimple {
 
-	//代理单例对象缓存Map,构造为线程安全的容器
+	/**
+	 * 1.代理单例对象缓存Map,构造为线程安全的容器
+	 * 2.缓存Cglib反射生成的代理类实例,避免每次重新生成新的代理类与实例,减少JVM永久代的堆积压力以及减少JAVA堆的内存开销!
+	 * 3.将代理类实例单例化!仅初始化一次!
+	 * **/
 	private static final Map<String,CglibSimple> MAP = new ConcurrentHashMap<String,CglibSimple>();
 	
 	//构造代理懒加载容器,实现代理类单例化!

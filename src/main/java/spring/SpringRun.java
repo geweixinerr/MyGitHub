@@ -1,11 +1,5 @@
 package spring;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-
-import org.apache.commons.collections4.Factory;
-import org.apache.commons.collections4.map.LazyMap;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -33,15 +27,5 @@ public class SpringRun {
 		cashObject.moveMoney(null);
 		cashObject.calculateMoney(null);
 		System.out.println("执行完毕--->success!");
-//		Map<String,String> lazyMap = new LazyMap
-		
-		Map<String,Object> map = Collections.synchronizedMap(new HashMap<String,Object>());
-		@SuppressWarnings("unchecked")
-		LazyMap<String, Object> lazyMap = LazyMap.lazyMap(map,new Factory() {
-			@Override
-			public Object create() {
-				return null;
-			}
-		});
 	}
 }
