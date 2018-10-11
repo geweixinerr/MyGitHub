@@ -19,6 +19,13 @@ public class LogbackFilter extends Filter<ILoggingEvent> {
 		DEBUG,INFO,WARN,ERROR
 	};
 	
+	/**
+	 * FilterReply返回值定义
+	 * 返回值为DENY时，日志事件直接丢弃这条日志，不会再传递给剩下的过滤器。
+	 * 返回值为NEUTRAL时，则传递给下面的过滤器。
+	 * 返回值为ACCEPT时，日志事件立即处理这条日志，跳过调用其它过滤器。
+	 * 
+	 * **/
 	@Override
 	public FilterReply decide(ILoggingEvent event) {
 		//SQL语句里打印等级为DEBUG,只拦截DEBUG级日志.

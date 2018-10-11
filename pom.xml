@@ -6,7 +6,15 @@
 	<version>${project.release.version}</version>
 	<name>Spring Project</name>
 	<description>我的Spring Maven项目</description>
-
+   
+   <!-- 引入主POM,此处只为测试-->
+    <parent>
+   		<groupId>com</groupId>
+		<artifactId>MySpringMainPom</artifactId>
+		<version>1.0</version>
+        <relativePath>main-pom.xml</relativePath>
+    </parent>
+    
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.release.version>0.0.1-SNAPSHOT</project.release.version>
@@ -293,6 +301,24 @@
 								</goals>
 								<configuration>
 									<executable>../${project.parent.artifactId}/deploy.bat</executable>
+								</configuration>
+							</execution>
+							<!-- 替换资源文件 -->
+							<execution>
+							    <id>编辑周期中替换资源文件...</id>
+							    <!-- 在编译执行阶段替换 -->
+							    <phase>generate-sources</phase>
+							   	<goals>
+									<goal>run</goal>
+								</goals>
+								<!-- 具体执行配置 -->
+							    <configuration>
+									<tasks>
+										<echo>替换资源进行中...</echo>
+									    <delete file="xxURL/XX.war" />
+										<copy file="../xxxURL/xxx.xml" 
+										tofile="../xxxURL/xxx.xml" overwrite="true"/>									
+									</tasks> 
 								</configuration>
 							</execution>
 						</executions>
