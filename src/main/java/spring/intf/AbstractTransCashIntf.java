@@ -26,6 +26,7 @@ public abstract class AbstractTransCashIntf implements TransCashIntf {
 
 	@Override
 	public BigDecimal moveMoney(BigDecimal money) {
+		System.out.println("moveMoney");
 		return null;
 	}
 
