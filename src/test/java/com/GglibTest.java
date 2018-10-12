@@ -24,7 +24,7 @@ public class GglibTest {
 	    });
 	    
 	    CglibSimple proxy = (CglibSimple) enhancer.create();
-	    System.out.println(proxy.test(null)); //拦截test，输出Hello cglib
+	    System.out.println(proxy.tragetMethod(null)); //拦截test，输出Hello cglib
 	    System.out.println(proxy.toString()); 
 	    System.out.println(proxy.getClass());
 	    System.out.println(proxy.hashCode());
