@@ -38,24 +38,26 @@ public class CglibSimple {
 	}
 
 	public static void main(String[] args) {
-		CglibSimple simple = LAZYMAP.get("Java");
+		CglibSimple simple = LAZYMAP.get(CglibSimple.class.getClass());
 		simple.tragetMethod("Java");
-		CglibSimple simple2 = LAZYMAP.get("Java");
-		simple.tragetMethod(".NET");
-		System.out.println(simple.equals(simple2));
 	}
 	
 	//生成代理实例
 	public static CglibSimple getInstance() {
+		Execute execute = new Execute();
 		Enhancer enhancer = new Enhancer();
 		enhancer.setSuperclass(CglibSimple.class);
 		enhancer.setCallback(new MethodInterceptor() {
 			@Override
 			public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
-				if (method.getName().equals("test")) {
-					System.out.println("before method run..."+method.getName());
-					Object result = proxy.invokeSuper(obj, args);
-					System.out.println("after method run...");
+				if (method.getName().equals("tragetMethod")) {
+					Object result = null;
+					try {
+						execute.before();
+						result =proxy.invokeSuper(obj, args);
+					} finally {
+						execute.after();					
+					}
 					return result;
 				} else {
 					Object result = proxy.invokeSuper(obj, args);
