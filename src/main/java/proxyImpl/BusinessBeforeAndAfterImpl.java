@@ -1,7 +1,10 @@
 package proxyImpl;
 
+import org.springframework.stereotype.Service;
+
 import proxyIntf.BusinessBeforeAndAfterIntf;
 
+@Service
 public class BusinessBeforeAndAfterImpl implements BusinessBeforeAndAfterIntf<String> {
 
 	@Override
