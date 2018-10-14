@@ -20,6 +20,7 @@ public class ProxyPatternTest {
 	public static void main(String[] args) {
 		//CGLIB
 		List<String> list = new ArrayList<String>();
+		@SuppressWarnings({ "unused", "unchecked" })
 		List<String> listProxy = (List<String>) ProxyPattern.getInstance(list);
 		//listProxy.add("Java");
 		
