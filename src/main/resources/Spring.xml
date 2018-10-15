@@ -19,8 +19,8 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
 
 	<!-- 开启注解扫描 -->
-	<context:component-scan base-package="spring.*" />
-
+	<context:component-scan base-package="spring.*,proxyImpl"/>
+	
     <!-- 引入支持LogBack -->
 	<bean id="logInitialization"
 		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">

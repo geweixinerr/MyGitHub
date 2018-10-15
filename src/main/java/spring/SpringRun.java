@@ -1,5 +1,7 @@
 package spring;
 
+import java.math.BigDecimal;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -24,8 +26,8 @@ public class SpringRun {
 //		TransFactory object = (TransFactory) context.getBean(TransFactory.class);
 		TransFactory object = (TransFactory) context.getBean("transFactory");
 		TransCashIntf cashObject = object.getInstance();
-		cashObject.moveMoney(null);
-		cashObject.calculateMoney(null);
+		//cashObject.moveMoney(null);
+		cashObject.calculateMoney(new BigDecimal("100"));
 		System.out.println("执行完毕--->success!");
 	}
 }
