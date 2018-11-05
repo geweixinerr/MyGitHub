@@ -2,6 +2,8 @@ package netty;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
@@ -12,9 +14,18 @@ import io.netty.util.CharsetUtil;
  * 
  **/
 public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
+	
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) {
-		ctx.writeAndFlush(Unpooled.copiedBuffer("Netty Hello World,中国欢迎您!", CharsetUtil.UTF_8));
+		ChannelFuture future = ctx.writeAndFlush(Unpooled.copiedBuffer("Netty Hello World,中国欢迎您!", CharsetUtil.UTF_8));
+		future.addListener(new ChannelFutureListener() {
+			@Override
+			public void operationComplete(ChannelFuture future) throws Exception {
+				if (future.isSuccess()) {
+					System.out.println("write success!");
+				}
+			}
+		});
 	}
 
 	@Override
@@ -27,4 +38,5 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
 		cause.printStackTrace();
 		ctx.close();
 	}
+	
 }

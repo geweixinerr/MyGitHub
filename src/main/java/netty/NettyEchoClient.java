@@ -10,12 +10,13 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
-
 /**
  * Netty Client
  **/
 public class NettyEchoClient {
+
 	private final String host;
+
 	private final int port;
 
 	public NettyEchoClient(String host, int port) {
@@ -44,4 +45,5 @@ public class NettyEchoClient {
 	public static void main(String[] args) throws Exception {
 		new NettyEchoClient("localhost", 8081).start();
 	}
+	
 }
