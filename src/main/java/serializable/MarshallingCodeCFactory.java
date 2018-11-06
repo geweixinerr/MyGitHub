@@ -1,4 +1,4 @@
-package jbossMarshalling;
+package serializable;
 
 import org.jboss.marshalling.MarshallerFactory;
 import org.jboss.marshalling.Marshalling;
@@ -11,6 +11,9 @@ import io.netty.handler.codec.marshalling.MarshallingDecoder;
 import io.netty.handler.codec.marshalling.MarshallingEncoder;
 import io.netty.handler.codec.marshalling.UnmarshallerProvider;
 
+/**
+ * Netty 编码器/解码器实现
+ * **/
 public final class MarshallingCodeCFactory {
 
     /**

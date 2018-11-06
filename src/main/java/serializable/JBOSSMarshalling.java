@@ -1,4 +1,4 @@
-package jbossMarshalling;
+package serializable;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

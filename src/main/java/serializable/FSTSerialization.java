@@ -1,4 +1,4 @@
-package jbossMarshalling;
+package serializable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
