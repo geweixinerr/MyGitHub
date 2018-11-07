@@ -6,4 +6,7 @@ public final class ApacheRun {
 
 	}
 
+	public static void main(String[] args) {
+		System.out.println("Hello World Apache!");
+	}
 }
