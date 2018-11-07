@@ -12,7 +12,7 @@ import spring.intf.TransCashIntf;
  * @author gewx ,2018.10.4
  * Spring测试运行入口,基于Spring4.x
  * **/
-public class SpringRun {
+public final class SpringRun {
 
 	public SpringRun() {
 

@@ -13,7 +13,7 @@ import io.netty.util.CharsetUtil;
  * Netty客户端
  * 
  **/
-public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
+public final class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
 	
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) {

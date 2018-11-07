@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
  * @author Administrator Spring上下文启动初始化类
  * **/
 @Service
-public class SpringContextUtils implements ApplicationContextAware {
+public final class SpringContextUtils implements ApplicationContextAware {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SpringContextUtils.class);
 	

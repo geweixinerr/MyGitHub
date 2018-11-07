@@ -13,7 +13,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 /**
  * Netty Client
  **/
-public class NettyEchoClient {
+public final class NettyEchoClient {
 
 	private final String host;
 

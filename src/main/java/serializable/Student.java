@@ -8,7 +8,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * 序列化测试DTO
  * **/
-public class Student implements Serializable {
+public final class Student implements Serializable {
 
 	/**
 	 */

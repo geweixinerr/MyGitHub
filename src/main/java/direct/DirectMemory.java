@@ -1,4 +1,4 @@
-package util;
+package direct;
 
 import java.nio.ByteBuffer;
 
@@ -11,7 +11,7 @@ import sun.misc.Unsafe;
  * 当堆外内存上的Java对象消亡后,内存即被回收,否则就算Full GC堆外内存也不会释放.
  **/
 @SuppressWarnings({ "restriction", "unused" })
-public class DirectMemory {
+public final class DirectMemory {
 	public static void sleep(long i) {
 		try {
 			Thread.sleep(i);

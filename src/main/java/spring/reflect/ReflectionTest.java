@@ -7,7 +7,7 @@ import spring.bean.Student;
 /**
  * 反射测试类
  * **/
-public class ReflectionTest {
+public final class ReflectionTest {
 
 	public ReflectionTest() {
 		

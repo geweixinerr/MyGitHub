@@ -10,7 +10,7 @@ import io.netty.util.CharsetUtil;
 /**
  * 示例Server Handler
  **/
-public class EchoServerHandler extends ChannelInboundHandlerAdapter {
+public final class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {

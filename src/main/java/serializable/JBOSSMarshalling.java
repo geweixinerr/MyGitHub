@@ -22,7 +22,7 @@ import org.jboss.marshalling.Unmarshaller;
 /**
  * JBOSS序列化框架
  **/
-public class JBOSSMarshalling {
+public final class JBOSSMarshalling {
 
 	public JBOSSMarshalling() {
 	}

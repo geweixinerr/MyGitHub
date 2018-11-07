@@ -1,6 +1,6 @@
 package apache;
 
-public class ApacheRun {
+public final class ApacheRun {
 
 	public ApacheRun() {
 

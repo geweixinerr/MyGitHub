@@ -17,11 +17,11 @@ import net.sf.cglib.proxy.CallbackFilter;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
-import proxyIntf.BusinessBeforeAndAfterIntf;
+import spring.aop.beforeAndAfter.Intf.BusinessBeforeAndAfterIntf;
 import spring.intf.TransCashIntf;
 
 @Service("transFactory")
-public class TransFactory {
+public final class TransFactory {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(TransFactory.class);
 
