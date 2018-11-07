@@ -29,10 +29,6 @@ public class JBOSSMarshalling {
 
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws IOException, ClassNotFoundException {
-		/*
-		 * Student student = new Student(); student.setAddress("江苏镇江市大港镇");
-		 * student.setAge(31); student.setUserName("葛伟新");
-		 */
 
 		List<String> xyList = new ArrayList<String>();
 		xyList.add("Java");
