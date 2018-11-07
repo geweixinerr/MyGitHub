@@ -45,9 +45,9 @@ public final class NettyEchoServer {
                 @Override
                 public void operationComplete(ChannelFuture future) throws Exception {
                     if (!future.isSuccess()) {
-                    	System.out.println("服务启动失败-20191107分支!");
+                    	System.out.println("服务启动失败!");
                      } else {
-                     	System.out.println("服务启动成功-20191107分支,Java is very Good!");
+                     	System.out.println("服务启动成功!");
                     }
                 }
             });
