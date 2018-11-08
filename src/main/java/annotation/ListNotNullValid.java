@@ -5,7 +5,8 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 /**
-* 注解验证器 added by gewx
+ * @author geweixinerr 注解验证器 
+* 
 * **/
 public class ListNotNullValid implements ConstraintValidator<ListNotNull, List<String>>{
 
