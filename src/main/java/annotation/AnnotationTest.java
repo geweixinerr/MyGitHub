@@ -7,6 +7,10 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
+/**
+ * @author geweixinerr
+ * 注解测试类
+ * **/
 public class AnnotationTest {
 
 	@ListNotNull
