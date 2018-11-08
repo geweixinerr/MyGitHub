@@ -190,6 +190,30 @@
 		    <version>2.57</version>
 		</dependency>
 	
+		<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+		<dependency>
+		    <groupId>org.hibernate.validator</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>6.0.13.Final</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/javax.el/javax.el-api -->
+		<!-- 
+		<dependency>
+		    <groupId>javax.el</groupId>
+		    <artifactId>javax.el-api</artifactId>
+		    <version>3.0.1-b06</version>
+		</dependency>
+		 -->
+
+		<!-- https://mvnrepository.com/artifact/org.glassfish/javax.el -->
+		<!-- 配合hibernate-validator,开发注解 -->
+		<dependency>
+		    <groupId>org.glassfish</groupId>
+		    <artifactId>javax.el</artifactId>
+		    <version>3.0.1-b10</version>
+		</dependency> 
+
 	</dependencies>
 
 	<!-- 添加项目jdk编译插件 -->
