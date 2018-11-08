@@ -29,7 +29,9 @@ public final class NettyEchoServer {
 
 	public void startServer() throws InterruptedException {
 		final EchoServerHandler echo = new EchoServerHandler();
+		
 		EventLoopGroup group = new NioEventLoopGroup();
+		
 		try {
 			ServerBootstrap b = new ServerBootstrap();
 			b.group(group).channel(NioServerSocketChannel.class).localAddress(new InetSocketAddress(port))
@@ -42,19 +44,20 @@ public final class NettyEchoServer {
 
 			ChannelFuture f = b.bind().sync();
 			f.addListener(new ChannelFutureListener() {
-                @Override
-                public void operationComplete(ChannelFuture future) throws Exception {
-                    if (!future.isSuccess()) {
-                    	System.out.println("服务启动失败!");
-                     } else {
-                     	System.out.println("服务启动成功!");
-                    }
-                }
-            });
+				@Override
+				public void operationComplete(ChannelFuture future) throws Exception {
+					if (!future.isSuccess()) {
+						System.out.println("服务启动失败!");
+					} else {
+						System.out.println("服务启动成功!");
+					}
+				}
+			});
+			
 			f.channel().closeFuture().sync();
 		} finally {
 			group.shutdownGracefully().sync();
 		}
 	}
-	
+
 }
