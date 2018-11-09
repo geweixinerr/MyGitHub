@@ -65,32 +65,6 @@ public final class ReentrantLockSimple {
 		System.out.println("Two退出锁区!");
 	}
 	
-	public void syncOne_2() throws InterruptedException {
-		System.out.println("One进入锁区!");
-		if (lock.tryLock()) {
-			try {
-				TimeUnit.SECONDS.sleep(10);
-				System.out.println("SyncOne锁区执行!");
-			} finally {
-				lock.unlock();
-			}
-		}
-		System.out.println("One退出锁区!");
-	}
-
-	public void syncTwo_2() throws InterruptedException {
-		System.out.println("Two进入锁区!");
-		if (lock.tryLock()) {
-			try {
-				TimeUnit.SECONDS.sleep(10);
-				System.out.println("SyncTwo锁区执行!");
-			} finally {
-				lock.unlock();
-			}
-		}
-		System.out.println("Two退出锁区!");
-	}
-	
 	public static void main(String[] args) {
 		final ReentrantLockSimple simple = new ReentrantLockSimple();
 		Executor executor = Executors.newFixedThreadPool(2);
