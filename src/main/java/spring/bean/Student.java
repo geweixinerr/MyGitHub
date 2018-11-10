@@ -6,7 +6,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * @author gewx dto类
  * **/
-public class Student {
+public final class Student {
 
 	public Student() {
 

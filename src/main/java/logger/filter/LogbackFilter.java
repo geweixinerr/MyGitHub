@@ -1,4 +1,4 @@
-package logbackFilter;
+package logger.filter;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.filter.Filter;
@@ -12,7 +12,7 @@ import ch.qos.logback.core.spi.FilterReply;
  * @see [相关类/方法]（可选）
  * @since [产品/模块版本] （可选）
  */
-public class LogbackFilter extends Filter<ILoggingEvent> {
+public final class LogbackFilter extends Filter<ILoggingEvent> {
 
 	//日志等级
 	enum LEVEL{

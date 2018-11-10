@@ -3,7 +3,7 @@ package security;
 /**
  * added by gewx 2018.1.2 加密/解密自定义异常
  * **/
-public class SecurityException extends RuntimeException {
+public final class SecurityException extends RuntimeException {
 
 	/**
 	 * 

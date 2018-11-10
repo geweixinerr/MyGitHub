@@ -33,12 +33,14 @@ public abstract class AbstractTransCashIntf implements TransCashIntf {
 	@SuppressWarnings("unchecked")
 	@Override
 	public BigDecimal calculateMoney(BigDecimal money) {
-		LOGGER.info("默认实现!");
+		LOGGER.info("默认实现-抽象方法!");
+		System.out.println("执行目标方法=============start=============");
 		//集合BeanFactory
 		List<String> arrayList = (List<String>)context.getApplicationContextInstance().getBean("listBean");
 		System.out.println("arrayList--->" + arrayList);
 		System.out.println("输出DTO---->" + student);
-		return null;
+		System.out.println("执行目标方法=============end=============");
+		return money;
 	}
 
 }

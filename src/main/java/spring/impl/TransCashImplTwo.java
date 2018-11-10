@@ -23,4 +23,13 @@ public class TransCashImplTwo extends AbstractTransCashIntf {
 		System.out.println("第二个实现类!");
 		return null;
 	}
+
+	@Override
+	public BigDecimal calculateMoney(BigDecimal money) {
+		System.out.println("执行目标方法=============start=============");
+        System.out.println("子类具体实现!");
+		System.out.println("执行目标方法=============end=============");
+		return money;
+	}
+
 }
