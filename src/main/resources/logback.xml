@@ -9,7 +9,7 @@
 			<charset>UTF-8</charset>
 		</encoder>
 		<!-- 日志拦截器,过滤等级为DEBUG及以上 -->
-		<filter class="logbackFilter.LogbackFilter">
+		<filter class="logger.filter.LogbackFilter">
 			<level>DEBUG</level>
 		</filter>
 	</appender>
