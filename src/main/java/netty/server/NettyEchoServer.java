@@ -28,7 +28,7 @@ public final class NettyEchoServer {
 	}
 
 	public void startServer() throws InterruptedException {
-		final EchoServerHandler echo = new EchoServerHandler();
+		final EchoServerOutboundHandler echo = new EchoServerOutboundHandler();
 		
 		EventLoopGroup group = new NioEventLoopGroup();
 		
@@ -38,6 +38,7 @@ public final class NettyEchoServer {
 					.childHandler(new ChannelInitializer<SocketChannel>() {
 						@Override
 						public void initChannel(SocketChannel ch) throws Exception {
+							System.out.println("初始化!");
 							ch.pipeline().addLast(echo);
 						}
 					});
