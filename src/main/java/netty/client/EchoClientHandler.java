@@ -19,21 +19,14 @@ public final class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) {
 		Channel channel = ctx.channel();
-		ChannelFuture future = channel.writeAndFlush(Unpooled.copiedBuffer("Netty Hello World,中国欢迎您!", CharsetUtil.UTF_8));
-		future.addListener(new ChannelFutureListener() {
-			@Override
-			public void operationComplete(ChannelFuture future) throws Exception {
-				if (future.isSuccess()) {
-					System.out.println("write success!");
-				}
-			}
-		});
+		for (int i = 0; i < 100; i++) {
+			channel.writeAndFlush(Unpooled.copiedBuffer("Netty Hello World,中国欢迎您!", CharsetUtil.UTF_8));
+		}
 	}
 
 	@Override
 	public void channelRead0(ChannelHandlerContext ctx, ByteBuf in) {
 		System.out.println("Client received: " + in.toString(CharsetUtil.UTF_8));
-		ctx.close();
 	}
 
 	@Override

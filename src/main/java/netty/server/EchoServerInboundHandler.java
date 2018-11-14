@@ -21,67 +21,12 @@ public final class EchoServerInboundHandler extends ChannelInboundHandlerAdapter
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 		System.out.println("第一个channelRead!");
 		ByteBuf bf = (ByteBuf) msg;
-		String message = bf.toString(CharsetUtil.UTF_8);
-		ctx.channel().attr(key).set(message);
-        System.out.println("是否是直接内存:" + bf.isDirect());
-        if (bf.isDirect()) {
-        	System.out.println("bf-toString:" + bf.toString()); 
-        	int length = bf.readableBytes(); //可读取字节数
-        	byte [] b = new byte[length];
-        	int index = bf.readerIndex();
-        	System.out.println("读取的字节index: " + index + ",length: " + length);
-        	bf.getBytes(index, b);
-        	String sb = new String(b);
-        	System.out.println("读取的数据:" + sb);
-        }
-		ctx.write(bf);
-		ReferenceCountUtil.release(bf);//释放资源!
-	}
-
-	@Override
-	public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-		System.out.println("channelReadComplete:" + ctx.channel().attr(key).get());
-		
-		ctx.writeAndFlush(Unpooled.EMPTY_BUFFER);//.addListener(ChannelFutureListener.CLOSE);
+		ctx.writeAndFlush(bf);
 	}
 
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
          cause.printStackTrace();
-	}
-
-	@Override
-	public void channelActive(ChannelHandlerContext ctx) throws Exception {
-		System.out.println("生命周期开始!");
-	}
-
-	@Override
-	public void channelInactive(ChannelHandlerContext ctx) throws Exception {
-		System.out.println("生命周期结束!");
-	}
-
-	@Override
-	public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("已注册!");
-		super.channelRegistered(ctx);
-	}
-
-	@Override
-	public void channelUnregistered(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("未注册!");
-		super.channelUnregistered(ctx);
-	}
-
-	@Override
-	public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("Handler Add!");
-		super.handlerAdded(ctx);
-	}
-
-	@Override
-	public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("Handler Removed!");
-		super.handlerRemoved(ctx);
 	}
 
 }
