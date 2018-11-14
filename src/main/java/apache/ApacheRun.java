@@ -1,5 +1,9 @@
 package apache;
 
+/**
+ * @author gewx
+ * Apache 辅助类启动文件
+ * **/
 public final class ApacheRun {
 
 	public ApacheRun() {
