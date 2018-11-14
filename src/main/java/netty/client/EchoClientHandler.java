@@ -20,7 +20,7 @@ public final class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf
 	public void channelActive(ChannelHandlerContext ctx) {
 		Channel channel = ctx.channel();
 		for (int i = 0; i < 100; i++) {
-			channel.writeAndFlush(Unpooled.copiedBuffer("Netty Hello World,中国欢迎您!", CharsetUtil.UTF_8));
+			channel.writeAndFlush(Unpooled.copiedBuffer("Netty Hello World,中国欢迎您!"+System.getProperty("line.separator"), CharsetUtil.UTF_8));
 		}
 	}
 
