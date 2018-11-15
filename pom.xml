@@ -159,11 +159,12 @@
 			<artifactId>joda-time</artifactId>
 			<version>2.10</version>
 		</dependency>
-		
+
+		<!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
 		<dependency>
-		  <groupId>io.netty</groupId>
-		  <artifactId>netty-all</artifactId>
-		  <version>4.1.9.Final</version>
+		    <groupId>io.netty</groupId>
+		    <artifactId>netty-all</artifactId>
+		    <version>4.1.31.Final</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.jboss.marshalling/jboss-marshalling -->
@@ -227,7 +228,7 @@
 		    <artifactId>protobuf-java</artifactId>
 		    <version>3.6.1</version>
 		</dependency>
-		
+    
 	</dependencies>
 
 	<!-- 添加项目jdk编译插件 -->

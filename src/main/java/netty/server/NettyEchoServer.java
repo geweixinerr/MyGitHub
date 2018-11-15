@@ -10,6 +10,8 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.LineBasedFrameDecoder;
+import io.netty.handler.codec.string.StringDecoder;
 
 /**
  * Netty服务器示例
@@ -28,7 +30,7 @@ public final class NettyEchoServer {
 	}
 
 	public void startServer() throws InterruptedException {
-		final EchoServerOutboundHandler echo = new EchoServerOutboundHandler();
+		final EchoServerInboundHandler echo = new EchoServerInboundHandler();
 		
 		EventLoopGroup group = new NioEventLoopGroup();
 		
@@ -38,7 +40,6 @@ public final class NettyEchoServer {
 					.childHandler(new ChannelInitializer<SocketChannel>() {
 						@Override
 						public void initChannel(SocketChannel ch) throws Exception {
-							System.out.println("初始化!");
 							ch.pipeline().addLast(echo);
 						}
 					});
