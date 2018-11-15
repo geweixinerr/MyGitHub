@@ -35,8 +35,8 @@ public final class NettyEchoClient {
 					.handler(new ChannelInitializer<SocketChannel>() {
 						@Override
 						public void initChannel(SocketChannel ch) throws Exception {
-							ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
-							ch.pipeline().addLast(new StringEncoder());
+//							ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
+//							ch.pipeline().addLast(new StringEncoder());
 							ch.pipeline().addLast(new EchoClientHandler());
 						}
 					});
