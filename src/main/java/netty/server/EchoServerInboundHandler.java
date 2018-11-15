@@ -17,11 +17,14 @@ public final class EchoServerInboundHandler extends ChannelInboundHandlerAdapter
 
 	private static final AttributeKey<String> key = AttributeKey.valueOf("field");
 
+	private int i = 0;
+	
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-		System.out.println("第一个channelRead!");
-		ByteBuf bf = (ByteBuf) msg;
-		ctx.writeAndFlush(bf);
+		String bf = (String) msg;
+		String message = "服务器: " + bf +",count: " + (i++);
+		System.out.println(message);
+		ctx.writeAndFlush(Unpooled.copiedBuffer(message + System.getProperty("line.separator"), CharsetUtil.UTF_8));
 	}
 
 	@Override

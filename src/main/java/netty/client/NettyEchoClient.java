@@ -11,6 +11,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
 
 /**
  * Netty Client
@@ -34,6 +35,8 @@ public final class NettyEchoClient {
 					.handler(new ChannelInitializer<SocketChannel>() {
 						@Override
 						public void initChannel(SocketChannel ch) throws Exception {
+							ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
+							ch.pipeline().addLast(new StringEncoder());
 							ch.pipeline().addLast(new EchoClientHandler());
 						}
 					});
