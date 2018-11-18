@@ -30,7 +30,8 @@ public final class NettyEchoServer {
 	}
 
 	public void startServer() throws InterruptedException {
-		final EchoServerInboundHandler echo = new EchoServerInboundHandler();
+		final EchoServerInboundHandler inHandler = new EchoServerInboundHandler();
+		final EchoServerOutboundHandler outHandler = new EchoServerOutboundHandler();
 		
 		EventLoopGroup group = new NioEventLoopGroup();
 		
@@ -42,7 +43,8 @@ public final class NettyEchoServer {
 						public void initChannel(SocketChannel ch) throws Exception {
 							ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
 							ch.pipeline().addLast(new StringDecoder());
-							ch.pipeline().addLast(echo);
+							ch.pipeline().addLast(inHandler);
+							ch.pipeline().addFirst(outHandler);
 						}
 					});
 
