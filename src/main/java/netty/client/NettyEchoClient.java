@@ -12,6 +12,8 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
+import netty.codec.SimpleMessageToByteDecode;
+import netty.codec.SimpleMessageToByteEncoder;
 
 /**
  * Netty Client
@@ -35,14 +37,14 @@ public final class NettyEchoClient {
 					.handler(new ChannelInitializer<SocketChannel>() {
 						@Override
 						public void initChannel(SocketChannel ch) throws Exception {
-							ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
-							ch.pipeline().addLast(new StringEncoder());
-							ch.pipeline().addLast(new EchoClientHandler());
-							ch.pipeline().addFirst(new EchoClientOutHandler());
+							ch.pipeline().addLast(new SimpleMessageToByteEncoder());
+							ch.pipeline().addLast(new SimpleMessageToByteDecode());
+							ch.pipeline().addLast(new EchoClientInboundHandler());
 						}
 					});
 			ChannelFuture f = b.connect().sync();
 			f.channel().closeFuture().sync();
+						
 		} finally {
 			group.shutdownGracefully().sync();
 		}
