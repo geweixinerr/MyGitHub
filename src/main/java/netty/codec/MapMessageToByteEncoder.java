@@ -1,6 +1,5 @@
 package netty.codec;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import io.netty.buffer.ByteBuf;
@@ -15,8 +14,8 @@ public class MapMessageToByteEncoder extends MessageToByteEncoder<Map<String,Obj
 
 	@Override
 	protected void encode(ChannelHandlerContext ctx, Map msg, ByteBuf out) throws Exception {	
-         System.out.println("SimpleMessageToByteEncoder: " + msg.getClass().getName());
-         out.writeBytes(Unpooled.copiedBuffer("出站拦截器".getBytes()));
+         System.out.println("Map出站编码器: " + msg.getClass().getName() + ",value: " + msg);
+         out.writeBytes("Java Map!".getBytes());
 	}
 
 }
