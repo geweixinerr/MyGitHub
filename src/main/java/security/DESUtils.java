@@ -2,6 +2,8 @@ package security;
 
 import org.apache.commons.codec.binary.Base64;
 
+import exception.SecurityException;
+
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 

@@ -11,6 +11,8 @@ import java.util.Map;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.lang3.StringUtils;
 
+import exception.SecurityException;
+
 /**
  * @author gewx RSA算法秘钥创建类
  * **/

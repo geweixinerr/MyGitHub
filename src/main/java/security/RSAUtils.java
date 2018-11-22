@@ -2,6 +2,8 @@ package security;
 
 import org.apache.commons.codec.binary.Base64;
 
+import exception.SecurityException;
+
 import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.PublicKey;
