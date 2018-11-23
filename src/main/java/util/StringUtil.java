@@ -1,6 +1,5 @@
 package util;
 
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -13,7 +12,6 @@ import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -25,7 +23,6 @@ import java.util.regex.Pattern;
 
 
 import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -225,6 +222,7 @@ public final class StringUtil {
 	 * @param map
 	 * @return java.lang.String
 	 * **/
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static String convertXMLStr(Map map) {
 		Document doc = new Document();
 		Element rootEl = new Element("suning");
@@ -459,4 +457,40 @@ public final class StringUtil {
 		return priKey;
 	}
 
+	/**
+	 * @author gewx 字符串反转-递归算法
+	 * **/
+    public static String reverse(String str,int index,char[] array) {
+    	char [] c1 = str.toCharArray();
+    	
+    	if(index == c1.length) {
+    		return new String(array);
+    	}
+    	
+    	if(array == null) {
+    		array = new char[c1.length];
+    	}
+    	
+    	array[index] = c1[c1.length-(++index)];
+    	
+    	return reverse(str,index,array);
+    }
+    
+	/**
+	 * @author gewx 字符串反转-递归算法
+	 * **/
+    public static String reverse(char[] c1,int index,char[] array) {
+    	if(index == c1.length) {
+    		return new String(array);
+    	}
+    	
+    	if(array == null) {
+    		array = new char[c1.length];
+    	}
+    	
+    	array[index] = c1[c1.length-(++index)];
+    	
+    	return reverse(c1,index,array);
+    }
+    
 }
