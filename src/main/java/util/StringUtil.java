@@ -461,25 +461,17 @@ public final class StringUtil {
 	 * @author gewx 字符串反转-递归算法
 	 * **/
     public static String reverse(String str,int index,char[] array) {
-    	char [] c1 = str.toCharArray();
-    	
-    	if(index == c1.length) {
-    		return new String(array);
+    	if(StringUtils.isNoneBlank(str)) {
+    		return reverse(str.toCharArray(),0,null);	
+    	} else {
+    		return StringUtils.trimToEmpty(str);
     	}
-    	
-    	if(array == null) {
-    		array = new char[c1.length];
-    	}
-    	
-    	array[index] = c1[c1.length-(++index)];
-    	
-    	return reverse(str,index,array);
     }
     
 	/**
 	 * @author gewx 字符串反转-递归算法
 	 * **/
-    public static String reverse(char[] c1,int index,char[] array) {
+	private static String reverse(char[] c1,int index,char[] array) {
     	if(index == c1.length) {
     		return new String(array);
     	}
