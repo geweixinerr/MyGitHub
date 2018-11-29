@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * 日期切片辅助类
  * **/
-public class SplitDateUtils {
+public final class SplitDateUtils {
 
 	public SplitDateUtils() {
 
