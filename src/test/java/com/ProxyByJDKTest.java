@@ -38,7 +38,7 @@ public class ProxyByJDKTest {
 
 		};
 
-		//执行测试用例，JDK代理
+		//执行测试用例
 		TransCashIntf proxyImpl = ProxyByJDK.getInstance(proxyTest);
 		proxyImpl.moveMoney(null);
 	}
