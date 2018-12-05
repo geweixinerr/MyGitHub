@@ -17,6 +17,9 @@ public class ProxyByJDKTest {
 
 	}
 
+	/**
+         * 测试用例	
+	 **/
 	@Test
 	public void testProxy() {
 		TransCashIntf proxyTest = new TransCashIntf() {
