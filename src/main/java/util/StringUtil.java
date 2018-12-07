@@ -402,18 +402,29 @@ public final class StringUtil {
 	}
 
 	/**
-	 * @author Administrator added by gewx 2015.6.8 记录日志
-	 * */
-	public static String getError(Exception e) {
+	 * @author gewx 异常栈字符串输出
+	 * @param Throwable
+	 *            ex
+	 * @return String
+	 **/
+	public static String getErrorText(Throwable throwable) {
 		try {
-			StringWriter sw = new StringWriter();
-			PrintWriter pw = new PrintWriter(sw);
-			e.printStackTrace(pw);
-			sw.close();
-			pw.close();
-			return sw.toString();
+			PrintWriter writer = null;
+			try {
+				StringWriter strWriter = new StringWriter(512);
+				writer = new PrintWriter(strWriter);
+				throwable.printStackTrace(writer);
+
+				StringBuffer sb = strWriter.getBuffer();
+				sb.trimToSize();
+				return sb.toString();
+			} finally {
+				if (writer != null) {
+					writer.close();
+				}
+			}
 		} catch (Exception ex) {
-			return "exception is error!";
+			return "ERROR!";
 		}
 	}
 
