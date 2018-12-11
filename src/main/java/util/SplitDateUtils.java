@@ -10,8 +10,7 @@ import java.util.Date;
  * **/
 public final class SplitDateUtils {
 
-	public SplitDateUtils() {
-
+	private SplitDateUtils() {
 	}
 
 	public static void main(String[] args) throws ParseException {

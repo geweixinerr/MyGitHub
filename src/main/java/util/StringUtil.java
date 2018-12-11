@@ -36,6 +36,9 @@ import exception.ConvertException;
  * 字符串常用操作类
  */
 public final class StringUtil { 
+	
+	private StringUtil() {
+	}
 
 	/**
 	 * @author gewx

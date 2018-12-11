@@ -5,9 +5,12 @@ import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 
 /**
- * @author gewx char字符类型与byte类型互转
+ * @author gewx char字符类型与byte类型互转[org.apache.commons.lang3.CharUtils工具类可参考使用]
  **/
 public final class CharByteUtils {
+	
+	private CharByteUtils() {
+	}
 
 	/**
 	 * char数组---> byte数组
