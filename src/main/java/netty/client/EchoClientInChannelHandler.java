@@ -15,14 +15,15 @@ public class EchoClientInChannelHandler extends ChannelInboundHandlerAdapter {
 
 	@Override
 	public void channelActive(ChannelHandlerContext ctx) throws Exception {
-		System.out.println("连接已经建立!");
-		ctx.writeAndFlush(Unpooled.copiedBuffer("Hello,中国" +System.getProperty("line.separator"),Charset.defaultCharset()));
+		for (int i = 0; i < 100; i++) {
+			ctx.writeAndFlush(Unpooled.copiedBuffer("Hello,中国["+i+"]" +System.getProperty("line.separator"),Charset.defaultCharset()));
+		}
 	}
 
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 		String message = (String)msg;
-		System.out.println("读取到的信息:" + message);
+		System.out.println("客户端读取到的信息:" + message);
 	}
 
 }
