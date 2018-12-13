@@ -25,6 +25,33 @@ public final class GzipUtils {
 
 	/**
 	 * @author gewx Gzip压缩
+	 * @param bytes 
+	 *            压缩的字节数组
+	 **/
+	public static byte[] compress(byte[] bytes) {
+		if (bytes == null || bytes.length == 0) {
+			throw new IllegalArgumentException("缺失必填参数:bytes!");
+		}
+
+		ByteArrayOutputStream out = new ByteArrayOutputStream(1024 + 512); // init
+		try {
+			GZIPOutputStream gzip = null;
+			try {
+				gzip = new GZIPOutputStream(out);
+				gzip.write(bytes);
+			} finally {
+				if (gzip != null) {
+					gzip.close();
+				}
+			}
+		} catch (Exception e) {
+			throw new CompressException("流压缩异常,message: " + e.getMessage());
+		}
+		return out.toByteArray();
+	}
+	
+	/**
+	 * @author gewx Gzip压缩
 	 * @param str
 	 *            压缩的字符, encoding 字符编码
 	 **/
@@ -125,7 +152,8 @@ public final class GzipUtils {
 	public static void main(String[] args) throws IOException {
 		String str = "中国人民万岁,非常好的的多功能下.中国人民万岁,非常好的的多功能下.中国人民万岁,非常好的的多功能下.";
 		int strLength = str.length();
-		byte[] compressByteArray = compress(str); // 压缩字节数组
+//		byte[] compressByteArray = compress(str); // 压缩字节数组
+		byte[] compressByteArray = compress(str.getBytes("UTF-8")); // 压缩字节数组
 		System.out.println("字符串长度: " + strLength);
 		System.out.println("字符比特数组长度: " + str.getBytes().length);
 		System.out.println("压缩后比特数组: " + compressByteArray.length);
