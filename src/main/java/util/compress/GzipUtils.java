@@ -25,7 +25,7 @@ public final class GzipUtils {
 
 	/**
 	 * @author gewx Gzip压缩
-	 * @param bytes 
+	 * @param bytes
 	 *            压缩的字节数组
 	 **/
 	public static byte[] compress(byte[] bytes) {
@@ -49,7 +49,7 @@ public final class GzipUtils {
 		}
 		return out.toByteArray();
 	}
-	
+
 	/**
 	 * @author gewx Gzip压缩
 	 * @param str
@@ -152,7 +152,7 @@ public final class GzipUtils {
 	public static void main(String[] args) throws IOException {
 		String str = "中国人民万岁,非常好的的多功能下.中国人民万岁,非常好的的多功能下.中国人民万岁,非常好的的多功能下.";
 		int strLength = str.length();
-//		byte[] compressByteArray = compress(str); // 压缩字节数组
+		// byte[] compressByteArray = compress(str); // 压缩字节数组
 		byte[] compressByteArray = compress(str.getBytes("UTF-8")); // 压缩字节数组
 		System.out.println("字符串长度: " + strLength);
 		System.out.println("字符比特数组长度: " + str.getBytes().length);
