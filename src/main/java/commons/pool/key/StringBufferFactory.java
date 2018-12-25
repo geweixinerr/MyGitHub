@@ -1,4 +1,6 @@
-package commons.pool;
+package commons.pool.key;
+
+import org.apache.commons.pool2.BaseKeyedPooledObjectFactory;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -23,7 +25,6 @@ package commons.pool;
  * It is not intended to be included in a source release.
  */
 
-import org.apache.commons.pool2.BasePooledObjectFactory;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
 
@@ -31,30 +32,16 @@ import org.apache.commons.pool2.impl.DefaultPooledObject;
  * Example PooledObjectFactory for pooled StringBuffers.
  */
 public class StringBufferFactory
-    extends BasePooledObjectFactory<StringBuffer> {
+    extends BaseKeyedPooledObjectFactory<String,StringBuffer> {
 
-    @Override
-    public StringBuffer create() {
+	@Override
+	public StringBuffer create(String key) throws Exception {
         return new StringBuffer();
-    }
+	}
 
-    /**
-     * Use the default PooledObject implementation.
-     */
-    @Override
-    public PooledObject<StringBuffer> wrap(StringBuffer buffer) {
+	@Override
+	public PooledObject<StringBuffer> wrap(StringBuffer buffer) {
         return new DefaultPooledObject<StringBuffer>(buffer);
-    }
+	}
 
-    /**
-     * When an object is returned to the pool, clear the buffer.
-     */
-    @Override
-    public void passivateObject(PooledObject<StringBuffer> pooledObject) {
-    	System.out.println("返回...");
-        pooledObject.getObject().setLength(0);
-    }
-
-    // for all other methods, the no-op implementation
-    // in BasePooledObjectFactory will suffice
 }

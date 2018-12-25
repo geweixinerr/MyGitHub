@@ -1,4 +1,4 @@
-package commons.pool;
+package commons.pool.key;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one or more
@@ -27,10 +27,10 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 
-import org.apache.commons.pool2.ObjectPool;
-import org.apache.commons.pool2.PooledObjectFactory;
-import org.apache.commons.pool2.impl.GenericObjectPool;
-import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
+import org.apache.commons.pool2.KeyedObjectPool;
+import org.apache.commons.pool2.KeyedPooledObjectFactory;
+import org.apache.commons.pool2.impl.GenericKeyedObjectPool;
+import org.apache.commons.pool2.impl.GenericKeyedObjectPoolConfig;
 
 /**
  * Instantiates and uses a ReaderUtil. The GenericObjectPool supplied to the constructor will have
@@ -38,24 +38,28 @@ import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
  */
 public class ReaderUtilClient {
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void main(String[] args) throws IllegalStateException, UnsupportedOperationException, Exception {
     	
     	//对象池配置
-    	GenericObjectPoolConfig conf = new GenericObjectPoolConfig();
+    	GenericKeyedObjectPoolConfig<StringBuffer> conf = new GenericKeyedObjectPoolConfig<StringBuffer>();
+    	
     	conf.setMaxTotal(3);
     	conf.setBlockWhenExhausted(false);
     
-    	PooledObjectFactory poolFactory = new StringBufferFactory();
-    	ObjectPool pool = new GenericObjectPool<StringBuffer>(poolFactory,conf);
+    	KeyedPooledObjectFactory<String, StringBuffer> poolFactory = new StringBufferFactory();
+    	
+    	KeyedObjectPool<String, StringBuffer> pool = new GenericKeyedObjectPool<String,StringBuffer>(poolFactory,conf);
 
         ReaderUtil readerUtil = new ReaderUtil(pool);
         
         System.out.println("激活的数量: " + pool.getNumActive());
-        pool.borrowObject();
-        pool.borrowObject();
-        pool.borrowObject();
+      //  pool.borrowObject("mc");
+      //  pool.borrowObject("mc");
+//        pool.borrowObject("mc");
 
+        pool.addObject("Java");
+        pool.borrowObject("Java");
+        
         System.out.println("激活的数量: " + pool.getNumActive());
         Reader reader = new StringReader("foo");
         try {
