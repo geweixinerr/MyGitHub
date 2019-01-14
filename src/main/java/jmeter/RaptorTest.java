@@ -40,9 +40,8 @@ public final class RaptorTest extends AbstractJavaSamplerClient {
 		config.put("serverNode", "mc"); // 服务节点
 		config.put("remote", "localhost"); // 服务节点IP地址
 		config.put("port", "8090"); // 端口号
-		config.put("maxclients", "8192"); // 最大TCP连接数
+		config.put("maxclients", "128"); // 最大TCP连接数
 		config.put("minclients", "6"); // 最小TCP连接数
-		config.put("speedNum", "1024"); // 最大单条TCP速率[在途事务数]
 
 		clientConfig.add(config);
 
@@ -77,7 +76,7 @@ public final class RaptorTest extends AbstractJavaSamplerClient {
 
 				@Override
 				public void invoke(RpcRequestBody req, RpcResponseBody resp) {
-					
+					LOGGER.info(""+req);									
 				}
 			}, 5, data, message);
 			result.setSuccessful(true);
@@ -89,6 +88,7 @@ public final class RaptorTest extends AbstractJavaSamplerClient {
 		return result;
 	}
 
+	/*
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) {
 		// 组装发送消息
@@ -116,7 +116,6 @@ public final class RaptorTest extends AbstractJavaSamplerClient {
 								
 								@Override
 								public void invoke(RpcRequestBody req, RpcResponseBody resp) {
-									LOGGER.error("响应: " + req);
 								}
 								
 							}, 5, data, message);
@@ -128,4 +127,6 @@ public final class RaptorTest extends AbstractJavaSamplerClient {
 			});
 		}
 	}
+	*/
+	
 }
