@@ -303,6 +303,13 @@
 		    </exclusions>
 		</dependency>
 	
+		<!-- https://mvnrepository.com/artifact/com.alibaba/transmittable-thread-local -->
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>transmittable-thread-local</artifactId>
+		    <version>2.10.2</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>cn.raptor</groupId>
 			<artifactId>raptor-core</artifactId>
