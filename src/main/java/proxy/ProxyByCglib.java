@@ -33,11 +33,11 @@ public final class ProxyByCglib {
 			 * **/
 			@Override
 			public Object intercept(Object proxyObj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
-				System.out.println("代理执行start...,methodName:" + method.getName());
+				System.out.println("代理执行start, methodName:" + method.getName());
+				System.out.println("方法参数: " + ArrayUtils.toString(args));
 //				Object result = proxy.invokeSuper(proxyObj, args);
 				Object result = proxy.invoke(obj, args);
-				System.out.println("参数:" + ArrayUtils.toString(args));
-				System.out.println("代理执行end...");
+				System.out.println("代理执行end.");
 				return result;
 			}
 		});
