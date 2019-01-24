@@ -11,7 +11,7 @@ import com.alibaba.ttl.threadpool.TtlExecutors;
 
 import raptor.core.Constants;
 
-public class TtlTaskPoolTest {
+public final class TtlTaskPoolUtil {
 	
 	public static final InheritableThreadLocal<String> threadLocal = new InheritableThreadLocal<String>();
 	
@@ -32,6 +32,15 @@ public class TtlTaskPoolTest {
 	public static void main(String[] args) {
 		threadLocal.set("Java");
 		t_threadLocal.set("Java");
+		
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				System.out.println("初始==================================>");
+				System.out.println("threadId: " + threadLocal.get());
+				System.out.println("t_threadLocal: " + t_threadLocal.get());
+			}
+		}).start();
 		
 		POOLTASKEXECUTOR.execute(new Runnable() {
 			@Override
@@ -67,6 +76,20 @@ public class TtlTaskPoolTest {
 				System.out.println("第四次==================================>");
 				System.out.println("threadId: " + threadLocal.get());
 				System.out.println("t_threadLocal: " + t_threadLocal.get());
+			}
+		});
+		
+		TtlExecutors.getTtlExecutor(POOLTASKEXECUTOR).execute(new Runnable() {
+			@Override
+			public void run() {
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						System.out.println("第五次==================================>");
+						System.out.println("threadId: " + threadLocal.get());
+						System.out.println("t_threadLocal: " + t_threadLocal.get());
+					}
+				}).start();
 			}
 		});
 		
