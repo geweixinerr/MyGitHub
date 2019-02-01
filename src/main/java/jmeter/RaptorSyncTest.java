@@ -18,6 +18,7 @@ import raptor.core.client.RpcClientTaskPool;
 import raptor.core.client.task.RpcClientTimeOutScan;
 import raptor.core.init.RpcParameter;
 import raptor.core.message.RpcResponseBody;
+import raptor.exception.RpcException;
 
 /**
  * Raptor压测-同步
@@ -74,7 +75,7 @@ public final class RaptorSyncTest extends AbstractJavaSamplerClient {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static void main(String[] args) {
+	public static void main(String[] args) throws RpcException {
 		// 组装发送消息
 		String message = "Netty RPC Send, Netty is VeryGood!";
 		NettyTestData data = new NettyTestData();
