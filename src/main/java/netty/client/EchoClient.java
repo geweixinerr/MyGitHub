@@ -8,13 +8,9 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.DelimiterBasedFrameDecoder;
-import io.netty.handler.codec.FixedLengthFrameDecoder;
 import io.netty.handler.codec.LineBasedFrameDecoder;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
-import io.netty.handler.logging.LogLevel;
-import io.netty.handler.logging.LoggingHandler;
 
 /**
  * @author gewx Netty客户端
@@ -35,9 +31,9 @@ public final class EchoClient {
 						@Override
 						protected void initChannel(SocketChannel ch) throws Exception {
 							ChannelPipeline pipline = ch.pipeline();
-							//pipline.addLast(new LoggingHandler(LogLevel.INFO)); // 开启日志监控
 							pipline.addLast(new LineBasedFrameDecoder(1024));
 							pipline.addLast(new StringDecoder());
+							pipline.addLast(new StringEncoder());
 							pipline.addLast(new EchoClientInChannelHandler());
 						}
 					});
