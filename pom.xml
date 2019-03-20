@@ -280,6 +280,13 @@
 		    <version>3.4.2</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>fastjson</artifactId>
+		    <version>1.2.56</version>
+		</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.apache.jmeter/ApacheJMeter_core -->
 		<!-- 
 		导出jmeter依赖包的maven命令[dependency:copy-dependencies -DoutputDirectory=lib]
