@@ -26,7 +26,7 @@ public class IntervalExample {
 	}
 
 	/**
-	 * ÈÕÆÚÏà²î
+	 * æ—¥æœŸç›¸å·®
 	 */
 	private static void example_1() {
 
@@ -63,16 +63,16 @@ public class IntervalExample {
 	}
 
 	/**
-	 * ¶àÊôĞÔÏà²î
+	 * å¤šå±æ€§ç›¸å·®
 	 * 
 	 */
 	private static void example_2() {
 
-		// Ïà²îÊ±¼äÊä³ö×Ö·û´®£º1Äê1ÔÂ1Ğ¡Ê±1Ãë
+		// ç›¸å·®æ—¶é—´è¾“å‡ºå­—ç¬¦ä¸²ï¼š1å¹´1æœˆ1å°æ—¶1ç§’
 		DateTime start = new DateTime(2011, 11, 25, 21, 59, 58);
 		DateTime end = new DateTime(2012, 12, 25, 22, 59, 59);
 
-		// ÉèÖÃ¿ªÊ¼Ê±¼äÎª£º2012-12-25 21:59:58 ===> 1Ğ¡Ê±1Ãë
+		// è®¾ç½®å¼€å§‹æ—¶é—´ä¸ºï¼š2012-12-25 21:59:58 ===> 1å°æ—¶1ç§’
 		//start = start.withYear(2012).withMonthOfYear(12);
 
 		DurationFieldType[] types = { DurationFieldType.years(),
@@ -85,12 +85,12 @@ public class IntervalExample {
 		Period period = new Interval(start, end).toPeriod(periodType);
 
 		PeriodFormatter formatter = new PeriodFormatterBuilder().appendYears()
-				.appendSeparatorIfFieldsBefore("Äê").appendMonths()
-				.appendSeparatorIfFieldsBefore("ÔÂ").appendDays()
-				.appendSeparatorIfFieldsBefore("ÈÕ").appendHours()
-				.appendSeparatorIfFieldsBefore("Ğ¡Ê±").appendMinutes()
-				.appendSeparatorIfFieldsBefore("·Ö").appendSeconds()
-				.appendSeparatorIfFieldsBefore("Ãë").toFormatter();
+				.appendSeparatorIfFieldsBefore("å¹´").appendMonths()
+				.appendSeparatorIfFieldsBefore("æœˆ").appendDays()
+				.appendSeparatorIfFieldsBefore("æ—¥").appendHours()
+				.appendSeparatorIfFieldsBefore("å°æ—¶").appendMinutes()
+				.appendSeparatorIfFieldsBefore("åˆ†").appendSeconds()
+				.appendSeparatorIfFieldsBefore("ç§’").toFormatter();
 
 		String string = period.toString(formatter);
 		System.out.println(string);

@@ -23,14 +23,14 @@ public class DateTimeExample {
 	}
 
 	/**
-	 * »ñÈ¡ÏµÍ³µ±Ç°Ê±¼ä
+	 * è·å–ç³»ç»Ÿå½“å‰æ—¶é—´
 	 */
 	private static void example_1() {
 
-		// Ä¬ÈÏ·½Ê½
+		// é»˜è®¤æ–¹å¼
 		DateTime dateTime = new DateTime();
 
-		// Ö¸¶¨ÈÕÆÚÊ±¼ä
+		// æŒ‡å®šæ—¥æœŸæ—¶é—´
 		dateTime = new DateTime(2012, // year
 				12, // month
 				21, // day
@@ -39,80 +39,81 @@ public class DateTimeExample {
 				0, // second
 				0 // milliseconds
 		);
-		// Í¨¹ıºÁÃëÊı
+		// é€šè¿‡æ¯«ç§’æ•°
 		dateTime = new DateTime(System.currentTimeMillis());
 
 		DateTimeZone dateTimeZone = DateTimeZone.forID("America/New_York");
 
-		// Ö¸¶¨•r…^
+		// æŒ‡å®šæ—¶åŒº
 		dateTime = new DateTime(dateTimeZone);
 
-		// İ”³öÄ¬ÕJ¸ñÊ½
+		// è¼¸å‡ºé»˜è®¤æ ¼å¼
 		System.out.println(dateTime);
 
-		// Êä³öÖ¸¶¨¸ñÊ½
+		// è¾“å‡ºæŒ‡å®šæ ¼å¼
 		System.out.println(dateTime.toString("yyyy-MM-dd HH:ss:mm"));
-		// ÌØ¶¨¸ñÊ½
+		// ç‰¹å®šæ ¼å¼
 		System.out.println(dateTime.toString(DateTimeFormat.fullDateTime()));
 
-		// Êä³ö²»Í¬Ê±ÇøµÄÊ±¼ä
+		// è¾“å‡ºä¸åŒæ—¶åŒºçš„æ—¶é—´
 		DateTime dateTime3 = dateTime.toDateTime(dateTimeZone);
 		System.out.println(dateTime3.toString("yyyy-MM-dd HH:ss:mm"));
 
 	}
 
 	/**
-	 * ÓëJDK»¥²Ù×÷
+	 * ä¸JDKäº’æ“ä½œ
 	 */
+	@SuppressWarnings("unused")
 	private static void example_2() {
 
-		// Í¨¹ıjdkÊ±¼ä¶ÔÏó¹¹Ôì
+		// é€šè¿‡jdkæ—¶é—´å¯¹è±¡æ„é€ 
 		Date date = new Date();
 		DateTime dateTime = new DateTime(date);
 
 		Calendar calendar = Calendar.getInstance();
 		dateTime = new DateTime(calendar);
 
-		// Joda-time ¸÷ÖÖ²Ù×÷.....
+		// Joda-time å„ç§æ“ä½œ.....
 
-		// ¼ÆËãÍê×ª»»³Éjdk ¶ÔÏó
+		// è®¡ç®—å®Œè½¬æ¢æˆjdk å¯¹è±¡
 		Date date2 = dateTime.toDate();
 		Calendar calendar2 = dateTime.toCalendar(Locale.CHINA);
 	}
 
 	/**
-	 * Ê±¼ä¼ÆËã <br>
-	 * plusXxx Ôö¼ÓxxÊôĞÔ<br> 
-	 * minusXxx ¼õÉÙxxÊôĞÔ
+	 * æ—¶é—´è®¡ç®— <br>
+	 * plusXxx å¢åŠ xxå±æ€§<br> 
+	 * minusXxx å‡å°‘xxå±æ€§
 	 */
 	private static void example_3() {
-		System.out.println("===================Ê±¼ä¼ÆËã===================");
+		System.out.println("===================æ—¶é—´è®¡ç®—===================");
 		DateTime dateTime = new DateTime();
-		// Ê±¼ä²Ù×÷
-		DateTime diffDate = dateTime.plusDays(1) // Ôö¼ÓÌì
-				.plusYears(1)// Ôö¼ÓÄê
-				.plusMonths(1)// Ôö¼ÓÔÂ
-				.plusWeeks(1)// Ôö¼ÓĞÇÆÚ
-				.minusMillis(1)// ¼õ·ÖÖÓ
-				.minusHours(1)// ¼õĞ¡Ê±
-				.minusSeconds(1);// ¼õÃëÊı
+		// æ—¶é—´æ“ä½œ
+		DateTime diffDate = dateTime.plusDays(1) // å¢åŠ å¤©
+				.plusYears(1)// å¢åŠ å¹´
+				.plusMonths(1)// å¢åŠ æœˆ
+				.plusWeeks(1)// å¢åŠ æ˜ŸæœŸ
+				.minusMillis(1)// å‡åˆ†é’Ÿ
+				.minusHours(1)// å‡å°æ—¶
+				.minusSeconds(1);// å‡ç§’æ•°
 
 		System.out.println(diffDate.toString("yyyy-MM-dd HH:ss:mm"));
 	}
 
 	/**
-	 * ÊôĞÔ²Ù×÷
+	 * å±æ€§æ“ä½œ
 	 */
 	private static void example_4() {
-		System.out.println("===================ÊôĞÔ²Ù×÷===================");
+		System.out.println("===================å±æ€§æ“ä½œ===================");
 		
 		DateTime dateTime = new DateTime();
 		
-		//»ñÈ¡Äê
+		//è·å–å¹´
 		Property yearOfCentury = dateTime.yearOfEra();
 		System.out.println(yearOfCentury.getAsString());
 		
-		//»ñÈ¡ÔÂÊôĞÔ¡¢ĞÇÆÚdayOfWeek()¡¢dayOfMonth¡¢ xxOfxx.....
+		//è·å–æœˆå±æ€§ã€æ˜ŸæœŸdayOfWeek()ã€dayOfMonthã€ xxOfxx.....
 		DateTime.Property month = dateTime.monthOfYear();
 		System.out.println("short = " + month.getAsShortText());
 		System.out.println("short = " + month.getAsShortText(Locale.ITALIAN));

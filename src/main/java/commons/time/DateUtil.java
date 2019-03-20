@@ -22,62 +22,62 @@ import org.joda.time.format.PeriodFormatter;
 import org.joda.time.format.PeriodFormatterBuilder;
 
 /**
- * Ê±¼äÈÕÆÚ²Ù×÷Ïà¹ØÀà
+ * æ—¶é—´æ—¥æœŸæ“ä½œç›¸å…³ç±»
  */
 public class DateUtil {
 
 	/**
-	 * •rég¸ñÊ½<br>
+	 * æ™‚é–“æ ¼å¼<br>
 	 * <code>HH:mm:ss</code>
 	 */
 	public static final String TIME_FORMAT = "HH:mm:ss";
 
 	/**
-	 * ÍêÕûÊ±¼ä <br>
+	 * å®Œæ•´æ—¶é—´ <br>
 	 * <code>yyyy-MM-dd HH:mm:ss</code>
 	 */
 	public static final String DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
 	/**
-	 * ÍêÕûÊ±¼ä(›]ÓĞÃë)<br>
+	 * å®Œæ•´æ—¶é—´(æ²’æœ‰ç§’)<br>
 	 * <code>yyyy-MM-dd HH:mm</code>
 	 */
 	public static final String SHORT_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm";
 
 	/**
-	 * ÍêÕûÊ±¼ä§ºÁÃë(ÎŞÖĞ»®Ïß) <br>
+	 * å®Œæ•´æ—¶é—´å¸¶æ¯«ç§’(æ— ä¸­åˆ’çº¿) <br>
 	 * <code>yyyyMMddHHmmssS</code>
 	 */
 	public static final String LONG_DATE_TIME_FORMAT_NO_SEPARATOR = "yyyyMMddHHmmssS";
 
 	/**
-	 * ÄêÔÂÈÕÊ±·ÖÃë(ÎŞÖĞ»®Ïß)<br>
+	 * å¹´æœˆæ—¥æ—¶åˆ†ç§’(æ— ä¸­åˆ’çº¿)<br>
 	 * <code>yyyyMMddHHmmss</code>
 	 */
 	public static final String DATE_TIME_FORMAT_NO_SEPARATOR = "yyyyMMddHHmmss";
 
 	/**
-	 * ÄêÔÂÈÕ <br>
+	 * å¹´æœˆæ—¥ <br>
 	 * <code>yyyy-MM-dd</code>
 	 */
 	public static final String DATE_FORMAT = "yyyy-MM-dd";
 
 	/**
-	 * ÄêÔÂÈÕÊ±·ÖÃë(ÎŞÖĞ»®Ïß)<br>
+	 * å¹´æœˆæ—¥æ—¶åˆ†ç§’(æ— ä¸­åˆ’çº¿)<br>
 	 * <code>yyyyMMdd</code>
 	 */
 	public static final String DATE_FORMAT_NO_SEPARATOR = "yyyyMMdd";
 
 	/**
-	 * ÖĞ‡øÄêÔÂÈÕ<br>
-	 * <code>yyyyÄêMMÔÂddÈÕ</code>
+	 * ä¸­åœ‹å¹´æœˆæ—¥<br>
+	 * <code>yyyyå¹´MMæœˆddæ—¥</code>
 	 */
-	public static final String CHINESE_DATE_FORMAT = "yyyyÄêMMÔÂddÈÕ";
+	public static final String CHINESE_DATE_FORMAT = "yyyyå¹´MMæœˆddæ—¥";
 
 	/**
-	 * »ñÈ¡µ±Ç°ÏµÍ³ºÁÃëÊı
+	 * è·å–å½“å‰ç³»ç»Ÿæ¯«ç§’æ•°
 	 * 
-	 * @return µ±Ç°ÏµÍ³ºÁÃëÊı
+	 * @return å½“å‰ç³»ç»Ÿæ¯«ç§’æ•°
 	 * 
 	 */
 	public static long getCurrentTimeMillis() {
@@ -85,9 +85,9 @@ public class DateUtil {
 	}
 
 	/**
-	 * »ñÈ¡µ±Ç°ÏµÍ³Ê±¼ä
+	 * è·å–å½“å‰ç³»ç»Ÿæ—¶é—´
 	 * <p>
-	 * ISO8601±ê×¼¸ñÊ½,eg: <code> Mon Dec 17 22:31:17 CST 2012</code>
+	 * ISO8601æ ‡å‡†æ ¼å¼,eg: <code> Mon Dec 17 22:31:17 CST 2012</code>
 	 * 
 	 * @return
 	 */
@@ -97,35 +97,35 @@ public class DateUtil {
 	}
 
 	/**
-	 * »ñÈ¡Äê·İ
+	 * è·å–å¹´ä»½
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * 
-	 * @return Äê·İÊı
+	 * @return å¹´ä»½æ•°
 	 */
 	public static int getYear(Date date) {
 		return new DateTime(date).getYear();
 	}
 
 	/**
-	 * »ñÈ¡ÔÂ·İ
+	 * è·å–æœˆä»½
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * 
-	 * @return ÔÂ·İÊı
+	 * @return æœˆä»½æ•°
 	 */
 	public static int getMonth(Date date) {
 		return new DateTime(date).getMonthOfYear();
 	}
 
 	/**
-	 * »ñÈ¡ÔÂ·İÖĞµÄÄ³Ìì <br>
+	 * è·å–æœˆä»½ä¸­çš„æŸå¤© <br>
 	 * eg: 2012-12-17 -> 17
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * 
 	 * @return
 	 */
@@ -134,13 +134,13 @@ public class DateUtil {
 	}
 
 	/**
-	 * »ñÈ¡Ò»ÄêÖĞµÄÄ³Ìì
+	 * è·å–ä¸€å¹´ä¸­çš„æŸå¤©
 	 * 
 	 * <br>
 	 * eg: 2012-12-17 -> 352
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * 
 	 * @return
 	 */
@@ -149,29 +149,29 @@ public class DateUtil {
 	}
 
 	/**
-	 * »ñÈ¡ĞÇÆÚ¼¸
+	 * è·å–æ˜ŸæœŸå‡ 
 	 * <p>
-	 * 1->ĞÇÆÚÒ»¡¢2->ĞÇÆÚ¶ş¡¢3->ĞÇÆÚÈı......
+	 * 1->æ˜ŸæœŸä¸€ã€2->æ˜ŸæœŸäºŒã€3->æ˜ŸæœŸä¸‰......
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * 
-	 * @return ĞÇÆÚ¼¸
+	 * @return æ˜ŸæœŸå‡ 
 	 */
 	public static int getDayOfWeek(Date date) {
 		return new DateTime(date).getDayOfWeek();
 	}
 
 	/**
-	 * ¸ñÊ½»¯•rég
+	 * æ ¼å¼åŒ–æ™‚é–“
 	 * 
 	 * @param date
-	 *            ĞèÒª¸ñÊ½»¯µÄ•rég
+	 *            éœ€è¦æ ¼å¼åŒ–çš„æ™‚é–“
 	 * 
 	 * @param pattern
-	 *            •rég¸ñÊ½
+	 *            æ™‚é–“æ ¼å¼
 	 * 
-	 * @return ¸ñÊ½»¯ááµÄ×Ö·û´®plusWeeks
+	 * @return æ ¼å¼åŒ–å¾Œçš„å­—ç¬¦ä¸²plusWeeks
 	 * 
 	 */
 	public static String formateDate(Date date, String pattern) {
@@ -179,14 +179,14 @@ public class DateUtil {
 	}
 
 	/**
-	 * ½âÎö•rég×Ö·û´®
+	 * è§£ææ™‚é–“å­—ç¬¦ä¸²
 	 * 
 	 * @param dateStr
-	 *            •rég×Ö·û´®
+	 *            æ™‚é–“å­—ç¬¦ä¸²
 	 * @param pattern
-	 *            Ïà‘ªµÄ¸ñÊ½
+	 *            ç›¸æ‡‰çš„æ ¼å¼
 	 * 
-	 * @return ½âÎöááµÄDate
+	 * @return è§£æå¾Œçš„Date
 	 * 
 	 * @throws UnsupportedOperationException
 	 *             if parsing is not supported
@@ -200,240 +200,240 @@ public class DateUtil {
 	}
 
 	/**
-	 * Ôö¼ÓÌìÊı
+	 * å¢åŠ å¤©æ•°
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * @param days
-	 *            ÌìÊı
+	 *            å¤©æ•°
 	 * 
-	 * @return ¼ÆËãÖ®ºóµÄÈÕÆÚ
+	 * @return è®¡ç®—ä¹‹åçš„æ—¥æœŸ
 	 */
 	public static Date plusDays(Date date, int days) {
 		return new DateTime(date).plusDays(days).toDate();
 	}
 
 	/**
-	 * Ôö¼ÓĞÇÆÚÊı
+	 * å¢åŠ æ˜ŸæœŸæ•°
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * @param weeks
-	 *            ĞÇÆÚÊı
+	 *            æ˜ŸæœŸæ•°
 	 * 
-	 * @return ¼ÆËãÖ®ºóµÄÈÕÆÚ
+	 * @return è®¡ç®—ä¹‹åçš„æ—¥æœŸ
 	 */
 	public static Date plusWeeks(Date date, int weeks) {
 		return new DateTime(date).plusWeeks(weeks).toDate();
 	}
 
 	/**
-	 * Ôö¼ÓÔÂÊı
+	 * å¢åŠ æœˆæ•°
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * @param months
-	 *            ÔÂÊı
+	 *            æœˆæ•°
 	 * 
-	 * @return ¼ÆËãÖ®ºóµÄÈÕÆÚ
+	 * @return è®¡ç®—ä¹‹åçš„æ—¥æœŸ
 	 */
 	public static Date plusMonths(Date date, int months) {
 		return new DateTime(date).plusMonths(months).toDate();
 	}
 
 	/**
-	 * Ôö¼ÓÄêÊı
+	 * å¢åŠ å¹´æ•°
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * @param years
-	 *            ÄêÊı
+	 *            å¹´æ•°
 	 * 
-	 * @return ¼ÆËãÖ®ºóµÄÈÕÆÚ
+	 * @return è®¡ç®—ä¹‹åçš„æ—¥æœŸ
 	 */
 	public static Date plusYears(Date date, int years) {
 		return new DateTime(date).plusYears(years).toDate();
 	}
 
 	/**
-	 * Ôö¼ÓĞ¡Ê±
+	 * å¢åŠ å°æ—¶
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * @param hours
-	 *            Ğ¡Ê±
+	 *            å°æ—¶
 	 * 
 	 * 
-	 * @return ¼ÆËãÖ®ºóµÄÈÕÆÚ
+	 * @return è®¡ç®—ä¹‹åçš„æ—¥æœŸ
 	 */
 	public static Date plusHours(Date date, int hours) {
 		return new DateTime(date).plusHours(hours).toDate();
 	}
 
 	/**
-	 * Ôö¼Ó·ÖÖÓ
+	 * å¢åŠ åˆ†é’Ÿ
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * @param years
-	 *            ·ÖÖÓ
+	 *            åˆ†é’Ÿ
 	 * 
-	 * @return ¼ÆËãÖ®ºóµÄÈÕÆÚ
+	 * @return è®¡ç®—ä¹‹åçš„æ—¥æœŸ
 	 */
 	public static Date plusMinutes(Date date, int minutes) {
 		return new DateTime(date).plusMinutes(minutes).toDate();
 	}
 
 	/**
-	 * Ôö¼ÓÃëÊı
+	 * å¢åŠ ç§’æ•°
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * @param years
-	 *            ÄêÊı
+	 *            å¹´æ•°
 	 * 
-	 * @return ¼ÆËãÖ®ºóµÄÈÕÆÚ
+	 * @return è®¡ç®—ä¹‹åçš„æ—¥æœŸ
 	 */
 	public static Date plusSeconds(Date date, int seconds) {
 		return new DateTime(date).plusSeconds(seconds).toDate();
 	}
 
 	/**
-	 * Ôö¼ÓºÁÃëÊı
+	 * å¢åŠ æ¯«ç§’æ•°
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * @param years
-	 *            ºÁÃë
+	 *            æ¯«ç§’
 	 * 
-	 * @return ¼ÆËãÖ®ºóµÄÈÕÆÚ
+	 * @return è®¡ç®—ä¹‹åçš„æ—¥æœŸ
 	 */
 	public static Date plusMilliseconds(Date date, int millis) {
 		return new DateTime(date).plusMillis(millis).toDate();
 	}
 
 	/**
-	 * ¼õÉÙÌìÊı
+	 * å‡å°‘å¤©æ•°
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * @param days
-	 *            ÌìÊı
+	 *            å¤©æ•°
 	 * 
-	 * @return ¼ÆËãÖ®ºóµÄÈÕÆÚ
+	 * @return è®¡ç®—ä¹‹åçš„æ—¥æœŸ
 	 */
 	public static Date minusDays(Date date, int days) {
 		return new DateTime(date).minusDays(days).toDate();
 	}
 
 	/**
-	 * ¼õÉÙĞÇÆÚÊı
+	 * å‡å°‘æ˜ŸæœŸæ•°
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * @param weeks
-	 *            ĞÇÆÚÊı
+	 *            æ˜ŸæœŸæ•°
 	 * 
-	 * @return ¼ÆËãÖ®ºóµÄÈÕÆÚ
+	 * @return è®¡ç®—ä¹‹åçš„æ—¥æœŸ
 	 */
 	public static Date minusWeeks(Date date, int weeks) {
 		return new DateTime(date).minusWeeks(weeks).toDate();
 	}
 
 	/**
-	 * ¼õÉÙÔÂÊı
+	 * å‡å°‘æœˆæ•°
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * @param months
-	 *            ÔÂÊı
+	 *            æœˆæ•°
 	 * 
-	 * @return ¼ÆËãÖ®ºóµÄÈÕÆÚ
+	 * @return è®¡ç®—ä¹‹åçš„æ—¥æœŸ
 	 */
 	public static Date minusMonths(Date date, int months) {
 		return new DateTime(date).minusMonths(months).toDate();
 	}
 
 	/**
-	 * ¼õÉÙÄêÊı
+	 * å‡å°‘å¹´æ•°
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * @param years
-	 *            ÄêÊı
+	 *            å¹´æ•°
 	 * 
-	 * @return ¼ÆËãÖ®ºóµÄÈÕÆÚ
+	 * @return è®¡ç®—ä¹‹åçš„æ—¥æœŸ
 	 */
 	public static Date minusYears(Date date, int years) {
 		return new DateTime(date).minusYears(years).toDate();
 	}
 
 	/**
-	 * ¼õÉÙĞ¡Ê±
+	 * å‡å°‘å°æ—¶
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * @param hours
-	 *            Ğ¡Ê±
+	 *            å°æ—¶
 	 * 
 	 * 
-	 * @return ¼ÆËãÖ®ºóµÄÈÕÆÚ
+	 * @return è®¡ç®—ä¹‹åçš„æ—¥æœŸ
 	 */
 	public static Date minusHours(Date date, int hours) {
 		return new DateTime(date).minusHours(hours).toDate();
 	}
 
 	/**
-	 * ¼õÉÙ·ÖÖÓ
+	 * å‡å°‘åˆ†é’Ÿ
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * @param years
-	 *            ·ÖÖÓ
+	 *            åˆ†é’Ÿ
 	 * 
-	 * @return ¼ÆËãÖ®ºóµÄÈÕÆÚ
+	 * @return è®¡ç®—ä¹‹åçš„æ—¥æœŸ
 	 */
 	public static Date minusMinutes(Date date, int minutes) {
 		return new DateTime(date).minusMinutes(minutes).toDate();
 	}
 
 	/**
-	 * ¼õÉÙÃëÊı
+	 * å‡å°‘ç§’æ•°
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * @param years
-	 *            ÄêÊı
+	 *            å¹´æ•°
 	 * 
-	 * @return ¼ÆËãÖ®ºóµÄÈÕÆÚ
+	 * @return è®¡ç®—ä¹‹åçš„æ—¥æœŸ
 	 */
 	public static Date minusSeconds(Date date, int seconds) {
 		return new DateTime(date).minusSeconds(seconds).toDate();
 	}
 
 	/**
-	 * ¼õÉÙºÁÃëÊı
+	 * å‡å°‘æ¯«ç§’æ•°
 	 * 
 	 * @param date
-	 *            ÈÕÆÚ
+	 *            æ—¥æœŸ
 	 * @param years
-	 *            ºÁÃë
+	 *            æ¯«ç§’
 	 * 
-	 * @return ¼ÆËãÖ®ºóµÄÈÕÆÚ
+	 * @return è®¡ç®—ä¹‹åçš„æ—¥æœŸ
 	 */
 	public static Date minusMilliseconds(Date date, int millis) {
 		return new DateTime(date).minusMillis(millis).toDate();
 	}
 
 	/**
-	 * ±È½ÏÁ½¸öÈÕÆÚ´óĞ¡
+	 * æ¯”è¾ƒä¸¤ä¸ªæ—¥æœŸå¤§å°
 	 * 
 	 * @param date1
 	 * @param date2
 	 * 
-	 * @return date1Ğ¡ÓÚdate2£¬·µ»Ø¸ºÊı<br>
-	 *         date1µÈÓÚdate2£¬·µ»Ø0<br>
-	 *         date1´óÓÚdate2£¬·µ»ØÕıÊı<br>
+	 * @return date1å°äºdate2ï¼Œè¿”å›è´Ÿæ•°<br>
+	 *         date1ç­‰äºdate2ï¼Œè¿”å›0<br>
+	 *         date1å¤§äºdate2ï¼Œè¿”å›æ­£æ•°<br>
 	 */
 	public static int compare(Date date1, Date date2) {
 		DateTime dateTime1 = new DateTime(date1);
@@ -442,12 +442,12 @@ public class DateUtil {
 	}
 
 	/**
-	 * »ñÈ¡Á½ÈÕÆÚÏà²îÄêÊı
+	 * è·å–ä¸¤æ—¥æœŸç›¸å·®å¹´æ•°
 	 * 
 	 * @param start
 	 * @param end
 	 * 
-	 * @return Ïà²îÄêÊı
+	 * @return ç›¸å·®å¹´æ•°
 	 */
 	public static int diffYears(Date start, Date end) {
 		DateTime dateTime1 = new DateTime(start);
@@ -456,12 +456,12 @@ public class DateUtil {
 	}
 
 	/**
-	 * »ñÈ¡Á½ÈÕÆÚÏà²îÔÂÊı
+	 * è·å–ä¸¤æ—¥æœŸç›¸å·®æœˆæ•°
 	 * 
 	 * @param start
 	 * @param end
 	 * 
-	 * @return Ïà²îÔÂÊı
+	 * @return ç›¸å·®æœˆæ•°
 	 */
 	public static int diffMonths(Date start, Date end) {
 		DateTime dateTime1 = new DateTime(start);
@@ -470,12 +470,12 @@ public class DateUtil {
 	}
 
 	/**
-	 * »ñÈ¡Á½ÈÕÆÚÏà²îÌìÊı
+	 * è·å–ä¸¤æ—¥æœŸç›¸å·®å¤©æ•°
 	 * 
 	 * @param start
 	 * @param end
 	 * 
-	 * @return Ïà²îÌìÊı
+	 * @return ç›¸å·®å¤©æ•°
 	 */
 	public static int diffDays(Date start, Date end) {
 		DateTime dateTime1 = new DateTime(start);
@@ -484,12 +484,12 @@ public class DateUtil {
 	}
 
 	/**
-	 * »ñÈ¡Á½ÈÕÆÚÏà²îĞÇÆÚÊı
+	 * è·å–ä¸¤æ—¥æœŸç›¸å·®æ˜ŸæœŸæ•°
 	 * 
 	 * @param start
 	 * @param end
 	 * 
-	 * @return Ïà²îĞÇÆÚÊı
+	 * @return ç›¸å·®æ˜ŸæœŸæ•°
 	 */
 	public static int diffWeeks(Date start, Date end) {
 		DateTime dateTime1 = new DateTime(start);
@@ -498,12 +498,12 @@ public class DateUtil {
 	}
 
 	/**
-	 * »ñÈ¡Á½ÈÕÆÚÏà²îºÁÃëÊı
+	 * è·å–ä¸¤æ—¥æœŸç›¸å·®æ¯«ç§’æ•°
 	 * 
 	 * @param start
 	 * @param end
 	 * 
-	 * @return Ïà²îºÁÃëÊı
+	 * @return ç›¸å·®æ¯«ç§’æ•°
 	 */
 	public static long diffMilliSeconds(Date start, Date end) {
 		DateTime dateTime1 = new DateTime(start);
@@ -512,12 +512,12 @@ public class DateUtil {
 	}
 
 	/**
-	 * »ñÈ¡Á½ÈÕÆÚÏà²îĞ¡Ê±Êı
+	 * è·å–ä¸¤æ—¥æœŸç›¸å·®å°æ—¶æ•°
 	 * 
 	 * @param start
 	 * @param end
 	 * 
-	 * @return Ïà²îĞ¡Ê±Êı
+	 * @return ç›¸å·®å°æ—¶æ•°
 	 */
 	public static int diffHours(Date start, Date end) {
 		DateTime dateTime1 = new DateTime(start);
@@ -526,12 +526,12 @@ public class DateUtil {
 	}
 
 	/**
-	 * »ñÈ¡Á½ÈÕÆÚÏà²î·ÖÖÓÊı
+	 * è·å–ä¸¤æ—¥æœŸç›¸å·®åˆ†é’Ÿæ•°
 	 * 
 	 * @param start
 	 * @param end
 	 * 
-	 * @return Ïà²î·ÖÖÓÊı
+	 * @return ç›¸å·®åˆ†é’Ÿæ•°
 	 */
 	public static int diffMinutes(Date start, Date end) {
 		DateTime dateTime1 = new DateTime(start);
@@ -540,12 +540,12 @@ public class DateUtil {
 	}
 
 	/**
-	 * »ñÈ¡Á½ÈÕÆÚÏà²îÃëÊı
+	 * è·å–ä¸¤æ—¥æœŸç›¸å·®ç§’æ•°
 	 * 
 	 * @param start
 	 * @param end
 	 * 
-	 * @return Ïà²îÃëÊı
+	 * @return ç›¸å·®ç§’æ•°
 	 */
 	public static int diffSeconds(Date start, Date end) {
 		DateTime dateTime1 = new DateTime(start);
@@ -554,24 +554,24 @@ public class DateUtil {
 	}
 
 	/**
-	 * »ñÈ¡Á½¸öÈÕÆÚÏà²îµÄÄêÔÂÈÕÊ±·ÖÃë×Ö·û´®
+	 * è·å–ä¸¤ä¸ªæ—¥æœŸç›¸å·®çš„å¹´æœˆæ—¥æ—¶åˆ†ç§’å­—ç¬¦ä¸²
 	 * <p>
 	 * eg1:<br>
 	 * start="2011-11-25 21:59:58"<br>
 	 * end="2012-12-25 22:59:59"<br>
-	 * diffString(start, end) ==> 1Äê1ÔÂ1Ğ¡Ê±1Ãë<br>
+	 * diffString(start, end) ==> 1å¹´1æœˆ1å°æ—¶1ç§’<br>
 	 * <p>
 	 * eg2:<br>
 	 * start="2012-11-25 21:59:58"<br>
 	 * end="2012-11-25 22:59:59"<br>
-	 * diffString(start, end) ==> 1Ğ¡Ê±1Ãë<br>
+	 * diffString(start, end) ==> 1å°æ—¶1ç§’<br>
 	 * <p>
-	 * <b>×¢Òâ£º</b> startÒ»¶¨Òª´óÓÚ»òµÈÓÚend,·ñÔò»áÅ×Òì³£
+	 * <b>æ³¨æ„ï¼š</b> startä¸€å®šè¦å¤§äºæˆ–ç­‰äºend,å¦åˆ™ä¼šæŠ›å¼‚å¸¸
 	 * <p>
 	 * 
 	 * @param start
 	 * @param end
-	 * @return Á½¸öÈÕÆÚÖ®¼äÏà²îÊ±¼ä×Ö·û´®
+	 * @return ä¸¤ä¸ªæ—¥æœŸä¹‹é—´ç›¸å·®æ—¶é—´å­—ç¬¦ä¸²
 	 * @throws IllegalArgumentException
 	 *             if the end is before the start
 	 */
@@ -586,12 +586,12 @@ public class DateUtil {
 		PeriodType periodType = PeriodType.forFields(types);
 		Period period = new Interval(dateTime1, dateTime2).toPeriod(periodType);
 		PeriodFormatter formatter = new PeriodFormatterBuilder().appendYears()
-				.appendSeparatorIfFieldsBefore("Äê").appendMonths()
-				.appendSeparatorIfFieldsBefore("ÔÂ").appendDays()
-				.appendSeparatorIfFieldsBefore("ÈÕ").appendHours()
-				.appendSeparatorIfFieldsBefore("Ğ¡Ê±").appendMinutes()
-				.appendSeparatorIfFieldsBefore("·Ö").appendSeconds()
-				.appendSeparatorIfFieldsBefore("Ãë").toFormatter();
+				.appendSeparatorIfFieldsBefore("å¹´").appendMonths()
+				.appendSeparatorIfFieldsBefore("æœˆ").appendDays()
+				.appendSeparatorIfFieldsBefore("æ—¥").appendHours()
+				.appendSeparatorIfFieldsBefore("å°æ—¶").appendMinutes()
+				.appendSeparatorIfFieldsBefore("åˆ†").appendSeconds()
+				.appendSeparatorIfFieldsBefore("ç§’").toFormatter();
 		return period.toString(formatter);
 	}
 }
