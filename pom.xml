@@ -323,6 +323,14 @@
 		    <version>2.10.2</version>
 		</dependency>
 		
+		<!-- 硬件采集开源工具 -->
+		<!-- https://mvnrepository.com/artifact/org.fusesource/sigar -->
+		<dependency>
+		    <groupId>org.fusesource</groupId>
+		    <artifactId>sigar</artifactId>
+		    <version>1.6.4</version>
+		</dependency>
+
 		<dependency>
 			<groupId>cn.raptor</groupId>
 			<artifactId>raptor-core</artifactId>
