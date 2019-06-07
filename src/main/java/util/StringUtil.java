@@ -12,6 +12,7 @@ import java.security.PublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -497,6 +498,46 @@ public final class StringUtil {
     	array[index] = c1[c1.length-(++index)];
     	
     	return reverse(c1,index,array);
+    }
+    
+    /**
+     * @author gewx List水平切割
+     * @param allList
+     *            待切割list, splitSize 切割后list容量
+     * @return 切割后的list数组
+     **/
+    public static List<List<?>> splitListToArray(List<?> allList, int splitSize) {
+          ArrayList<List<?>> list = new ArrayList<List<?>>();
+          if (allList == null || allList.size() == 0 || splitSize == 0) {
+                return list;
+          }
+          
+          int size = allList.size();
+          if (size <= splitSize) {
+                list.add(allList);
+                return list;
+          }
+          
+          //切割
+          int capacity = size / splitSize;
+          int mod = size % splitSize;
+          if (mod != 0) {
+                capacity++;
+          }
+          int index = 0;
+          int toIndex = 0;
+          list.ensureCapacity(capacity + (capacity / 4) + 1);  //根据容量计算实际size,避免发生resize
+          
+          for (int i = 0; i < capacity; i++) {
+                toIndex = splitSize + index;
+                if (toIndex > size) {
+                      toIndex = size;
+                }
+                List<?> childList = allList.subList(index, toIndex);
+                list.add(childList);
+                index = toIndex;
+          }
+          return list;
     }
     
 }
