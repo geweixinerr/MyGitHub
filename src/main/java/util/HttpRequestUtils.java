@@ -20,10 +20,11 @@ public final class HttpRequestUtils {
 	 **/
 	/*
 	public static String getRemoteAddrIP(HttpServletRequest request) {
-		if (StringUtils.isBlank(request.getHeader("x-forwarded-for"))) {
+		String header = request.getHeader("X-Forwarded-For");
+		if (StringUtils.isBlank(header)) {
 			return request.getRemoteAddr();
 		} else {
-			String[] ipArray = StringUtils.split(request.getHeader("x-forwarded-for"), ",");
+			String[] ipArray = StringUtils.split(header, ",");
 			if (ArrayUtils.isNotEmpty(ipArray)) {
 				return ipArray[0];
 			} else {
