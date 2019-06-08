@@ -48,9 +48,9 @@ public final class StringUtil {
 	 * **/
 	public static String getStr(Object obj) {
 		if (obj == null) {
-			return null;
+			return StringUtils.EMPTY;
 		} else {
-			return StringUtils.trimToEmpty(obj.toString());
+			return obj.toString();
 		}
 	}
 
@@ -294,19 +294,6 @@ public final class StringUtil {
 		cs[0] += 32;// 进行字母的ascii编码前移
 		return String.valueOf(cs);
 	}
-
-	/**
-	 * @author gewx 2013.3.29 获得客户真实IP(支持代理)
-	 * @param HttpServletRequest request
-	 * @return String
-	 * **/
-	/*
-	 * public static String getRemoteAddrIP(HttpServletRequest request) { if
-	 * (StringUtils.isBlank(request.getHeader("x-forwarded-for"))) return
-	 * request.getRemoteAddr(); else{ String [] ipArray =
-	 * StringUtils.split(request.getHeader("x-forwarded-for"), ",");
-	 * if(ipArray!=null)return ipArray[0]; else return null; } }
-	 */
 
 	/**
 	 * @author gewx 2012.12.18 格式化输出XML
