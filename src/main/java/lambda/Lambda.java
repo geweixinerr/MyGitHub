@@ -1,5 +1,7 @@
 package lambda;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -12,6 +14,9 @@ import java.util.function.UnaryOperator;
  **/
 public class Lambda {
 
+	@SuppressWarnings("static-access")
+	private static final ThreadLocal<SimpleDateFormat> FROMAT = new ThreadLocal<>().withInitial(() -> new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+	
 	public Lambda() {
 	}
 
@@ -33,6 +38,9 @@ public class Lambda {
 		testSupplier();
 		testUnarOperator();
 		testBinaryOperator();
+		
+		String thisDate = FROMAT.get().format(new Date());
+		System.out.println("当前时间:  " + thisDate);
 	}
 
 	/**
