@@ -21,17 +21,6 @@ public class Lambda {
 	}
 
 	public static void main(String[] args) {
-		/*
-		 * List<String> list = new ArrayList<String>(); list.add("1");
-		 * list.add("2"); list.add("3"); list.add("4"); list.add("5");
-		 * 
-		 * Message message = () -> { System.out.println("Hello"); };
-		 * message.sendMessage();
-		 * 
-		 * UnaryOperator<String> t = v -> v + "Java";
-		 * 
-		 * String s = t.apply("Hello,"); System.out.println(s);
-		 */
 		testPredicate();
 		testConsumer();
 		testFunction();
