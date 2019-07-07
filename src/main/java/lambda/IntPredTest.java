@@ -18,7 +18,7 @@ public class IntPredTest {
 	
 	public static void main(String[] args) {
 		//重载正确作法
-		boolean b = IntPredTest.check((IntPred)x -> x.intValue() == 10);
+		boolean b = IntPredTest.check((IntPred)(x -> x.intValue() == 10));
 		
 		//boolean b = IntPredTest.check(x -> x.intValue() == 10); //Error
 		System.out.println("value: " + b);
