@@ -15,6 +15,16 @@ public class MessageBody implements Serializable {
 	private String custName;
 
 	private String certNo;
+	
+	private Integer age;
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
 
 	public String getCustName() {
 		return custName;
@@ -32,4 +42,8 @@ public class MessageBody implements Serializable {
 		this.certNo = certNo;
 	}
 
+	@Override
+	public String toString() {
+		return "MessageBody [custName=" + custName + ", certNo=" + certNo + ", age=" + age + "]";
+	}
 }

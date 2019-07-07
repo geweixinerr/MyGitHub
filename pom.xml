@@ -323,6 +323,22 @@
 		    <version>2.10.2</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
+		<dependency>
+		    <groupId>org.apache.kafka</groupId>
+		    <artifactId>kafka-clients</artifactId>
+		    <version>2.3.0</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-streams -->
+		<!--
+		<dependency>
+		    <groupId>org.apache.kafka</groupId>
+		    <artifactId>kafka-streams</artifactId>
+		    <version>2.3.0</version>
+		</dependency>
+		-->
+
 		<!-- 硬件采集开源工具 -->
 		<!-- https://mvnrepository.com/artifact/org.fusesource/sigar -->
 		<dependency>
@@ -336,6 +352,7 @@
 			<artifactId>raptor-core</artifactId>
 			<version>1.0</version>
 		</dependency>
+		
 	</dependencies>
 
 	<!-- 添加项目jdk编译插件 -->
