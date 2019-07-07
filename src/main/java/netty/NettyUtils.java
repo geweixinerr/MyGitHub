@@ -16,7 +16,7 @@ public class NettyUtils {
 	}
 
 	public static void main(String[] args) {
-		Unpooled();
+		searchByteIndex();
 	}
 
 	/**
@@ -49,6 +49,7 @@ public class NettyUtils {
 		//常量NULL
 		//ByteProcessor.FIND_NUL 
 		// bf.readerIndex(6); //设置读索引下标
+
 		int index = bf.forEachByte(new ByteProcessor() {
 			@Override
 			public boolean process(byte value) throws Exception {
@@ -60,7 +61,11 @@ public class NettyUtils {
 			}
 		});
 
+		int index_ = bf.forEachByte(b -> b == 'W'? false : true);
+		
 		System.out.println("index: " + index);
+		System.out.println("lambda: " + index_);
+		
 		return index;
 	}
 }
