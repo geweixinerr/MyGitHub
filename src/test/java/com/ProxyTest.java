@@ -1,5 +1,7 @@
 package com;
 
+import org.junit.Test;
+
 import proxy.ProxyByCglib;
 
 public class ProxyTest {
@@ -20,16 +22,19 @@ public class ProxyTest {
 	}
 	
 	//私有方法无法代理
+	@SuppressWarnings("unused")
 	private void Hello_3() {
 		System.out.println("Hello_3");
 	}
 	
 	//final修饰的无法代理
+	@SuppressWarnings("unused")
 	private final void Hello_4() {
 		System.out.println("Hello_4");
 	}
 	
-	public static void main(String[] args) {
+	@Test
+	public void testMain() {
 		ProxyTest t = (ProxyTest) ProxyByCglib.getInstance(new ProxyTest());
 		t.Hello_0();
 	}

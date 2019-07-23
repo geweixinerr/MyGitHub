@@ -358,6 +358,20 @@
 	<!-- 添加项目jdk编译插件 -->
 	<build>
 		<plugins>
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-surefire-plugin</artifactId>
+			    <version>2.5</version>
+			    <configuration>
+			        <forkMode>once</forkMode>
+			        <argLine>-Dfile.encoding=UTF-8</argLine>
+			        <includes>
+			            <include>**/*Test.java</include>
+			        </includes>
+			        <excludes>
+			        </excludes>
+			    </configuration>
+			</plugin>
 			<!-- 
 				tomcat:deploy(部署一个web war包)
 				tomcat:reload(重新加载web war包)

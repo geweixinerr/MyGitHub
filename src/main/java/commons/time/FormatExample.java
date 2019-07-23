@@ -27,7 +27,7 @@ public class FormatExample {
 		String string_u = dateTime.toString("yyyy/MM/dd HH:mm:ss EE");
 		System.out.println(string_u);
 
-		String string_c = dateTime.toString("yyyyÄêMMÔÂddÈÕ HH:mm:ss EE", Locale.CHINESE);
+		String string_c = dateTime.toString("yyyyå¹´MMæœˆddæ—¥ HH:mm:ss EE", Locale.CHINESE);
 		System.out.println(string_c);
 	}
 }
