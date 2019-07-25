@@ -15,7 +15,7 @@ import raptor.RaptorRpc;
 import raptor.core.client.NettyTestData;
 import raptor.core.client.RpcClient;
 import raptor.core.client.RpcClientTaskPool;
-import raptor.core.client.task.RpcClientTimeOutScan;
+import raptor.core.client.task.RpcClientMonitor;
 import raptor.core.init.RpcParameter;
 import raptor.core.message.RpcResponseBody;
 import raptor.exception.RpcException;
@@ -24,7 +24,7 @@ import raptor.exception.RpcException;
  * Raptor压测-同步
  **/
 public final class RaptorSyncTest extends AbstractJavaSamplerClient {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(RaptorSyncTest.class);
 
 	static {
@@ -42,9 +42,9 @@ public final class RaptorSyncTest extends AbstractJavaSamplerClient {
 
 		RpcParameter.INSTANCE.initRpcParameter(clientConfig);
 		RpcClientTaskPool.initPool();
-		RpcClientTimeOutScan.scan();
+		RpcClientMonitor.scan();
 		try {
-			RpcClient.start();
+			RpcClient.connection();
 		} catch (Exception e1) {
 			System.out.println("启动异常: " + e1.getMessage());
 		}
@@ -73,18 +73,18 @@ public final class RaptorSyncTest extends AbstractJavaSamplerClient {
 		}
 		return result;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws RpcException {
 		// 组装发送消息
 		String message = "Netty RPC Send, Netty is VeryGood!";
 		NettyTestData data = new NettyTestData();
-		
+
 		@SuppressWarnings("rawtypes")
 		RaptorRpc rpc = new RaptorRpc();
-		
-		RpcResponseBody response = rpc.sendSyncMessage("mc", "LoginAuth",5, data, message);
-		System.out.println("result : " + response);		
+
+		RpcResponseBody response = rpc.sendSyncMessage("mc", "LoginAuth", 5, data, message);
+		System.out.println("result : " + response);
 	}
-	
+
 }

@@ -16,7 +16,7 @@ import raptor.core.AbstractCallBack;
 import raptor.core.client.NettyTestData;
 import raptor.core.client.RpcClient;
 import raptor.core.client.RpcClientTaskPool;
-import raptor.core.client.task.RpcClientTimeOutScan;
+import raptor.core.client.task.RpcClientMonitor;
 import raptor.core.init.RpcParameter;
 import raptor.core.message.RpcRequestBody;
 import raptor.core.message.RpcResponseBody;
@@ -26,7 +26,7 @@ import raptor.exception.RpcException;
  * Raptor压测-异步
  **/
 public final class RaptorAsyncTest extends AbstractJavaSamplerClient {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(RaptorAsyncTest.class);
 
 	static {
@@ -44,9 +44,9 @@ public final class RaptorAsyncTest extends AbstractJavaSamplerClient {
 
 		RpcParameter.INSTANCE.initRpcParameter(clientConfig);
 		RpcClientTaskPool.initPool();
-		RpcClientTimeOutScan.scan();
+		RpcClientMonitor.scan();
 		try {
-			RpcClient.start();
+			RpcClient.connection();
 		} catch (Exception e1) {
 			System.out.println("启动异常: " + e1.getMessage());
 		}
@@ -73,7 +73,7 @@ public final class RaptorAsyncTest extends AbstractJavaSamplerClient {
 
 				@Override
 				public void invoke(RpcRequestBody req, RpcResponseBody resp) {
-					LOGGER.info(""+req);									
+					LOGGER.info("" + req);
 				}
 			}, 5, data, message);
 			result.setSuccessful(true);
@@ -85,26 +85,25 @@ public final class RaptorAsyncTest extends AbstractJavaSamplerClient {
 		return result;
 	}
 
-	
 	@SuppressWarnings("unchecked")
 	public static void main(String[] args) throws RpcException {
 		// 组装发送消息
 		String message = "Netty RPC Send, Netty is VeryGood!";
 		NettyTestData data = new NettyTestData();
-		
+
 		@SuppressWarnings("rawtypes")
 		RaptorRpc rpc = new RaptorRpc();
-		
+
 		rpc.sendAsyncMessage("mc", "LoginAuth", new AbstractCallBack() {
 			@Override
 			public void invoke(RpcResponseBody resp) {
 			}
-			
+
 			@Override
 			public void invoke(RpcRequestBody req, RpcResponseBody resp) {
 			}
-			
+
 		}, 5, data, message);
 	}
-	
+
 }
