@@ -13,7 +13,6 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -100,7 +99,7 @@ public final class StringUtil {
 	 *            :目标map,args:校验数组
 	 * @return boolean
 	 * **/
-	public static boolean isEmptyMap(Map<String, String> params, String[] args) {
+	public static boolean isEmptyMap(Map<String, ?> params, String[] args) {
 		if (params == null || args == null || params.isEmpty()
 				|| args.length == 0) {
 			return true;
@@ -121,7 +120,7 @@ public final class StringUtil {
 	 * @param params,目标map
 	 * @return boolean
 	 * **/
-	public static boolean isEmptyMap(Map<String, String> params) {
+	public static boolean isEmptyMap(Map<String, ?> params) {
 		if (params == null || params.isEmpty()) {
 			return true;
 		}
@@ -142,7 +141,7 @@ public final class StringUtil {
 	 * @param params,目标map
 	 * @return boolean
 	 * **/
-	public static boolean isOneMoreMap(Map<String, String> params) {
+	public static boolean isOneMoreMap(Map<String, ?> params) {
 		if (params == null || params.isEmpty()) {
 			return false;
 		}
@@ -164,7 +163,7 @@ public final class StringUtil {
 	 *            :目标map
 	 * @return boolean
 	 * **/
-	public static boolean isOneMoreMap(Map<String, String> params, String[] args) {
+	public static boolean isOneMoreMap(Map<String, ?> params, String[] args) {
 		if (params == null || args == null || params.isEmpty()
 				|| args.length == 0) {
 			return false;
@@ -180,29 +179,7 @@ public final class StringUtil {
 		return bool;
 	}
 
-	/**
-	 * @author gewx 清理Map,只保留入参数组当中的key-value
-	 * @param params,目标map ,入参数组 args 
-	 * @return void
-	 * **/
-	public static void cleanMap(Map<String, String> params, String[] args,
-			Boolean bool) {
-		if (params != null && !params.isEmpty()) {
-			List<String> array = Arrays.asList(args);
-			String[] keyArray = params.keySet().toArray(new String[] {});
-			for (String arg : keyArray) {
-				if (bool) {
-					if (array.contains(arg)) {
-						params.remove(arg);
-					}
-				} else {
-					if (!array.contains(arg)) {
-						params.remove(arg);
-					}
-				}
-			}
-		}
-	}
+
 
 	public static void printPOJO(Object c) {
 		if (c != null) {
