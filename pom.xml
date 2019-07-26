@@ -366,6 +366,28 @@
 	<build>
 		<plugins>
 			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-resources-plugin</artifactId>
+		        <version>3.1.0</version>
+		        <configuration>
+		          <resources>
+					<resource>
+						<directory>src/main/resources</directory>
+						<includes>
+							<include>**/*</include>
+						</includes>
+						<filtering>true</filtering>
+						<!-- 排除文件 -->
+						<excludes>				    
+						    <exclude>settings.xml.bak</exclude> 
+						</excludes>
+					</resource>
+		          </resources> 
+		          <encoding>UTF-8</encoding>
+		        </configuration>
+	        </plugin>
+      
+			<plugin>
 			    <groupId>org.apache.maven.plugins</groupId>
 			    <artifactId>maven-surefire-plugin</artifactId>
 			    <version>2.5</version>
@@ -439,26 +461,24 @@
            -->
 		</plugins>
 
-		<!-- 资源属性文件替换 -->
-		<!-- 我们分析下<resource>下面的属性 <directory>: 配置那个目录下的文件通过${key}会被替换成属性值,resource目录下，我们一般放jdbc连接，或配置文件 
-			<includes>：指定那个目录下那个文件 <filtering>：这个配置的意思是过滤上面指定属性文件中的占位符，占位符是${变量名称}这样的形式，maven会自动读取配置文件， 
-			然后解析其中的占位符，使用上面pom文件中定义的属性进行替换 <exclueds>：在resource目录下，有很多文件，但用些文件不希望替换，则可以通过<excluede>指定 
-		-->
+		<!-- 与maven-resources-plugin插件功能一致 -->
+		<!-- 
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
 				<includes>
 					<include>**/*</include>
-					<!-- <include>*.xml</include> <include>init.properties</include> -->
 				</includes>
 				<filtering>true</filtering>
-				<!-- 排除文件 -->
-				<!-- <excludes> <exclude>application.properties</exclude> </excludes> -->
+				<excludes>				    
+				    <exclude>settings.xml.bak</exclude> 
+				</excludes>
 			</resource>
 		</resources>
+		 -->
 
         <!-- 
-               这里的filters与<profile>的filter意思一样，都是指属性文件地址， 这个如果上面定义<profile>的时候指定了，这里就不需要了，但有些开发习惯是在<profile>不定义，然后在<build>里指定。 
+               资源过滤替换属性值,这里的filters与<profile>的filter意思一样，都是指属性文件地址.
          -->
         <!-- 
         <filters>
