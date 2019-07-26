@@ -46,7 +46,7 @@ public final class StringUtil {
 	 * @param Object 需要转换的对象
 	 * @return string
 	 * **/
-	public static String getStr(Object obj) {
+	public static String getString(Object obj) {
 		if (obj == null) {
 			return StringUtils.EMPTY;
 		} else {
@@ -65,7 +65,7 @@ public final class StringUtil {
 			Field[] field = c.getClass().getDeclaredFields();
 			for (Field f : field) {
 				f.setAccessible(true);// 打通权限,指示反射的对象在使用时应该取消 Java 语言访问检查
-				dataMap.put(f.getName(),StringUtils.trimToEmpty(getStr(f.get(c))));
+				dataMap.put(f.getName(),StringUtils.trimToEmpty(getString(f.get(c))));
 			}
 		} catch (Exception ex) {
 			throw new ConvertException("转换异常:" + ex.getMessage());
@@ -87,7 +87,7 @@ public final class StringUtil {
 			for (String key : keyArray) {
 				Method m = c.getClass().getMethod(
 						"set" + firstStrUpperCase(key), parameterTypes);
-				m.invoke(c, StringUtil.getStr(params.get(key)));
+				m.invoke(c, StringUtil.getString(params.get(key)));
 			}
 		} catch (Exception ex) {
 			throw new ConvertException("转换异常:" + ex.getMessage());
@@ -108,7 +108,7 @@ public final class StringUtil {
 
 		boolean bool = false;
 		for (String arg : args) {
-			if (StringUtils.isBlank(getStr(params.get(arg)))) {
+			if (StringUtils.isBlank(getString(params.get(arg)))) {
 				bool = true;
 				break;
 			}
@@ -129,7 +129,7 @@ public final class StringUtil {
 		boolean bool = false;
 		Iterator<String> it = params.keySet().iterator();
 		while (it.hasNext()) {
-			if (StringUtils.isBlank(getStr(params.get(it.next())))) {
+			if (StringUtils.isBlank(getString(params.get(it.next())))) {
 				bool = true;
 				break;
 			}
@@ -150,7 +150,7 @@ public final class StringUtil {
 		boolean bool = false;
 		Iterator<String> it = params.keySet().iterator();
 		while (it.hasNext()) {
-			if (StringUtils.isNotBlank(getStr(params.get(it.next())))) {
+			if (StringUtils.isNotBlank(getString(params.get(it.next())))) {
 				bool = true;
 				break;
 			}
@@ -172,7 +172,7 @@ public final class StringUtil {
 
 		boolean bool = false;
 		for (String arg : args) {
-			if (StringUtils.isNotBlank(getStr(params.get(arg)))) {
+			if (StringUtils.isNotBlank(getString(params.get(arg)))) {
 				bool = true;
 				break;
 			}
@@ -236,7 +236,7 @@ public final class StringUtil {
 		while (it.hasNext()) {
 			Entry<String, Object> en = it.next();
 			Element childEl = new Element(en.getKey());
-			childEl.setText(getStr(en.getValue()));
+			childEl.setText(getString(en.getValue()));
 			rootEl.addContent(childEl);
 		}
 
@@ -262,7 +262,7 @@ public final class StringUtil {
 			for (int j = 0; j < field.length; j++) {
 				field[j].setAccessible(true);
 				Element childEl = new Element(field[j].getName());
-				childEl.setText(getStr(field[j].get(c)));
+				childEl.setText(getString(field[j].get(c)));
 				rootEl.addContent(childEl);
 			}
 		} catch (Exception e) {
