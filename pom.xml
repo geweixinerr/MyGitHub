@@ -263,9 +263,9 @@
 		<dependency>
 		    <groupId>com.google.guava</groupId>
 		    <artifactId>guava</artifactId>
-		    <version>27.0.1-jre</version>
+		    <version>28.0-jre</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.uuid/java-uuid-generator -->
 		<dependency>
 		    <groupId>com.fasterxml.uuid</groupId>
