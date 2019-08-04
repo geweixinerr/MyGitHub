@@ -12,7 +12,7 @@ import java.util.Map;
  * **/
 public class GcMapTest {
 
-	public static List<Map<String,Object>> byteList = new ArrayList<>();
+	public static List<Map<String,Object>> mapList = new ArrayList<>();
 	
 	public static void main(String[] args) throws InterruptedException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		System.out.println("测试GC....");
@@ -21,17 +21,34 @@ public class GcMapTest {
 			for (int j = 0; j < 1000; j++) {
 				map.put("key" + j, "GC是非常痛苦的一件事情!");
 			}
-			byteList.add(map);
+			mapList.add(map);
 			/**
 			 * 常规方式清理GC
 			 * **/
-			//byteList.clear(); //GC, 释放内存
+			//mapList.clear(); //GC, 释放内存
+			
+			/**
+			 * 等同于 mapList.clear();
+			 * **/
+			/*
+			mapList.remove(i);
+			i--;
+			*/
 			
 			/**
 			 * 反射方式清理GC
 			 * **/
-			Method m = byteList.getClass().getMethod("set", int.class,Object.class);
-			m.invoke(byteList, i, null);
+			Method m = mapList.getClass().getMethod("set", int.class,Object.class);
+			m.invoke(mapList, i, null);
+			
+			/**
+			 * 此种方式无效,因为强引用还存在. 必须要斩断GC ROOT强引用才能快速释放.
+			 * **/
+			/*
+			Method _m = mapList.getClass().getMethod("get",int.class);
+			Map<String,Object> _map = (Map<String, Object>) _m.invoke(mapList, i);
+			_map.clear();
+			*/
 		}
 		System.out.println("循环执行结束...");
 	}
