@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * vm options: -Xms10M -Xmx10M -XX:+PrintGCDetails -XX:+HeapDumpOnOutOfMemoryError
  * **/
-public class GcMapTest {
+public class GcListMapTest {
 
 	public static List<Map<String,Object>> mapList = new ArrayList<>();
 	
