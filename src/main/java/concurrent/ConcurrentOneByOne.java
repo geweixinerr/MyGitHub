@@ -54,11 +54,10 @@ public final class ConcurrentOneByOne {
 			throw new ConcurrentException("Concurrent Key is Not Empty~");
 		}
 
-		boolean isSet = redisTemplate.opsForValue().setIfAbsent(this.key, VALUE);
+		boolean isSet = redisTemplate.opsForValue().setIfAbsent(this.key, VALUE, this.timeOut, TimeUnit.SECONDS);
 		if (!isSet) {
 			throw new ConcurrentException("并发业务逻辑处理中,请稍后再试~");
 		}
-		redisTemplate.expire(this.key, this.timeOut, TimeUnit.SECONDS);
 	}
 
 	private void after() {
