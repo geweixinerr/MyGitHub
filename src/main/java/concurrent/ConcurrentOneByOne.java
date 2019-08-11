@@ -1,18 +1,16 @@
 package concurrent;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.SessionCallback;
 import org.springframework.stereotype.Service;
 
 import exception.ConcurrentException;
 
 /**
- * @author gewx 并发处理,基于Redis setNx/watch 乐观锁控制
+ * @author gewx 并发处理,基于Redis setNx控制
  **/
 
 @Service
@@ -42,43 +40,15 @@ public final class ConcurrentOneByOne {
 
 	public <T> T execute(OneByOne<T> one) {
 		try {
-			beforeByWatch();
+			before();
 			T t = one.invoke();
 			return t;
 		} finally {
 			after();
 		}
 	}
-
-	/**
-	 * @author gewx 低版本基于watch乐观锁实现分布式锁
-	 * **/
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	private void beforeByWatch() {
-		if (StringUtils.isBlank(this.key)) {
-			throw new ConcurrentException("Concurrent Key is Not Empty~");
-		}
-		
-		redisTemplate.watch(this.key);
-		String val = redisTemplate.opsForValue().get(this.key);
-		if (StringUtils.isNotBlank(val)) {
-			throw new ConcurrentException("并发业务逻辑处理中,请稍后再试[0]~");
-		}
-		
-		redisTemplate.execute((SessionCallback) connection -> {
-			connection.multi();
-			connection.opsForValue().set(this.key, VALUE);
-			connection.expire(this.key, this.timeOut, TimeUnit.SECONDS);
-			List result = connection.exec();
-			if (result == null) {
-				throw new ConcurrentException("并发业务逻辑处理中,请稍后再试[1]~");
-			}
-			return result;
-		});
-	}
 	
-	@SuppressWarnings("unused")
-	private void beforeBySetNx() {
+	private void before() {
 		if (StringUtils.isBlank(this.key)) {
 			throw new ConcurrentException("Concurrent Key is Not Empty~");
 		}
@@ -93,7 +63,7 @@ public final class ConcurrentOneByOne {
 	
 	//需要高版本支持
 	/*
-	private void beforeBySetNx() {
+	private void before() {
 		if (StringUtils.isBlank(this.key)) {
 			throw new ConcurrentException("Concurrent Key is Not Empty~");
 		}
