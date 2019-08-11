@@ -50,7 +50,7 @@ public final class SpringRedisRun {
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public void redisTransaction() {
 		template.execute((SessionCallback) session -> {
-			session.watch("lock"); //乐观锁事务监控. lock键被操作过,下面的事务将不被执行.
+			session.watch("lock"); //乐观锁事务监控. 直到exec命令执行前,只要lock键被操作过,事务将不被执行.
 			session.multi(); //开启事务
 			session.opsForValue().setIfAbsent("lock", "20190810");
 			session.expire("lock", 30, TimeUnit.SECONDS);
