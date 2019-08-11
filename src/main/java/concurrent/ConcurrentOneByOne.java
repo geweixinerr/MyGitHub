@@ -56,15 +56,20 @@ public final class ConcurrentOneByOne {
 		if (StringUtils.isBlank(this.key)) {
 			throw new ConcurrentException("Concurrent Key is Not Empty~");
 		}
-
+		
+		redisTemplate.watch(this.key);
+		String val = redisTemplate.opsForValue().get(this.key);
+		if (StringUtils.isNotBlank(val)) {
+			throw new ConcurrentException("并发业务逻辑处理中,请稍后再试[0]~");
+		}
+		
 		redisTemplate.execute((SessionCallback) connection -> {
-			connection.watch(this.key);
 			connection.multi();
 			connection.opsForValue().set(this.key, VALUE);
 			connection.expire(this.key, this.timeOut, TimeUnit.SECONDS);
 			List result = connection.exec();
 			if (result == null) {
-				throw new ConcurrentException("并发业务逻辑处理中,请稍后再试~");
+				throw new ConcurrentException("并发业务逻辑处理中,请稍后再试[1]~");
 			}
 			return result;
 		});
