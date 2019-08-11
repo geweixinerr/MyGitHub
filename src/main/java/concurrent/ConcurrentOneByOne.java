@@ -1,10 +1,12 @@
 package concurrent;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.SessionCallback;
 import org.springframework.stereotype.Service;
 
 import exception.ConcurrentException;
@@ -49,6 +51,26 @@ public final class ConcurrentOneByOne {
 		}
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	private void before() {
+		if (StringUtils.isBlank(this.key)) {
+			throw new ConcurrentException("Concurrent Key is Not Empty~");
+		}
+
+		redisTemplate.execute((SessionCallback) connection -> {
+			connection.watch(this.key);
+			connection.multi();
+			connection.opsForValue().set(this.key, VALUE);
+			connection.expire(this.key, this.timeOut, TimeUnit.SECONDS);
+			List result = connection.exec();
+			if (result == null) {
+				throw new ConcurrentException("并发业务逻辑处理中,请稍后再试~");
+			}
+			return result;
+		});
+	}
+	
+	/*
 	private void before() {
 		if (StringUtils.isBlank(this.key)) {
 			throw new ConcurrentException("Concurrent Key is Not Empty~");
@@ -61,6 +83,7 @@ public final class ConcurrentOneByOne {
 		
 		redisTemplate.expire(this.key,this.timeOut, TimeUnit.SECONDS);
 	}
+	*/
 	
 	/*
 	private void before() {
