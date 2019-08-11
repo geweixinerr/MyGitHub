@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import exception.ConcurrentException;
 
 /**
- * @author gewx 并发处理,基于Redis setNx控制
+ * @author gewx 并发处理,基于Redis setNx/watch 乐观锁控制
  **/
 
 @Service
