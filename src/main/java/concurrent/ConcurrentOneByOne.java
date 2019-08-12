@@ -76,8 +76,11 @@ public final class ConcurrentOneByOne {
 	*/
 
 	private void after() {
-		this.key = StringUtils.EMPTY;
-		this.timeOut = DEFAULT_TIME_OUT;
-		redisTemplate.delete(this.key);
+		try {
+			redisTemplate.delete(this.key);	
+		} finally {
+			this.key = StringUtils.EMPTY;
+			this.timeOut = DEFAULT_TIME_OUT;	
+		}		
 	}
 }
