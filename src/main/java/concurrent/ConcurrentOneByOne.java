@@ -21,16 +21,15 @@ public final class ConcurrentOneByOne {
 	private static final int DEFAULT_TIME_OUT = 15;
 	
 	@Autowired
-	private RedisTemplate<String, String> redisTemplate;
+	private RedisTemplate<String,String> redisTemplate;
 
-	public ConcurrentOneByOne build(String _key) {		
+	public ConcurrentOneByOne addConcurrentKey(String _key) {		
 		this.key = _key;
 		this.timeOut = DEFAULT_TIME_OUT;
 		return this;
 	}
 
-	public ConcurrentOneByOne build(String _key, Integer _timeOut) {
-		this.key = _key;
+	public ConcurrentOneByOne addKeyTimeOut(Integer _timeOut) {
 		this.timeOut = _timeOut;
 		return this;
 	}
@@ -48,7 +47,22 @@ public final class ConcurrentOneByOne {
 			after();
 		}
 	}
+	
+	private void before() {
+		if (StringUtils.isBlank(this.key)) {
+			throw new ConcurrentException("Concurrent Key is Not Empty~");
+		}
 
+		boolean isSet = redisTemplate.opsForValue().setIfAbsent(this.key, VALUE);
+		if (!isSet) {
+			throw new ConcurrentException("并发业务逻辑处理中,请稍后再试~");
+		}
+		//此处命令存在连接中断的问题,即过期命令设置失败.
+		redisTemplate.expire(this.key,this.timeOut, TimeUnit.SECONDS);
+	}
+	
+	//需要高版本支持
+	/*
 	private void before() {
 		if (StringUtils.isBlank(this.key)) {
 			throw new ConcurrentException("Concurrent Key is Not Empty~");
@@ -59,6 +73,7 @@ public final class ConcurrentOneByOne {
 			throw new ConcurrentException("并发业务逻辑处理中,请稍后再试~");
 		}
 	}
+	*/
 
 	private void after() {
 		this.key = StringUtils.EMPTY;
