@@ -1,5 +1,7 @@
 package util;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -23,6 +25,25 @@ public final class MD5CheckSumUtils {
 		for (String val : args) {
 			String value = getString(params.get(val));
 			sb.append(value);
+		}
+		String _signature = DigestUtils.md5Hex(sb.toString());
+		return signature.equals(_signature);
+	}
+	
+	/**
+	 * @author gewx checkSum
+	 * @param signature 客户端传递校验签名 , params 客户端请求参数, args 限定参数数组,filter 过滤的数据
+	 * **/
+	public static boolean checkSum(String signature, Map<String,?> params, String[] args, String... filter) {
+		List<String> filterList = Arrays.asList(filter);
+		
+		StringBuilder sb = new StringBuilder(256);
+		sb.append(KEY);
+		for (String val : args) {
+			if (!filterList.contains(val)) {
+				String value = getString(params.get(val));
+				sb.append(value);
+			} 
 		}
 		String _signature = DigestUtils.md5Hex(sb.toString());
 		return signature.equals(_signature);
