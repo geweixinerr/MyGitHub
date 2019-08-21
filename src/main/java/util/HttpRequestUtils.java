@@ -28,7 +28,7 @@ public final class HttpRequestUtils {
 			if (ArrayUtils.isNotEmpty(ipArray)) {
 				return ipArray[0];
 			} else {
-				return StringUtils.EMPTY;
+				return request.getRemoteAddr();
 			}
 		}
 	}
