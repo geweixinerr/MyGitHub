@@ -1,8 +1,8 @@
 package task.business;
 
+import task.TaskBean;
 
 import lombok.extern.slf4j.Slf4j;
-import task.TaskBean;
 
 /**
  * @author gewx 店铺微信图文消息推送Bean

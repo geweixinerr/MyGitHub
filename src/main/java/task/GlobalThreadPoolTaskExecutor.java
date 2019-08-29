@@ -9,6 +9,9 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
  **/
 public final class GlobalThreadPoolTaskExecutor {
 
+	private GlobalThreadPoolTaskExecutor() {
+	}
+
 	private static final int CORE_SIZE = Runtime.getRuntime().availableProcessors();
 
 	private static final ThreadPoolTaskExecutor POOLTASKEXECUTOR = new ThreadPoolTaskExecutor();
@@ -34,4 +37,7 @@ public final class GlobalThreadPoolTaskExecutor {
 		POOLTASKEXECUTOR.execute(taskBean);
 	}
 	
+	public void execute(TaskBeanDelayed taskBean) {
+		POOLTASKEXECUTOR.execute(taskBean);
+	}
 }

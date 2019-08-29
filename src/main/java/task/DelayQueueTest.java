@@ -40,12 +40,15 @@ public class DelayQueueTest {
 		delayQueue.add(test);
 		delayQueue.add(test2);
 
-		while (true) {
-			TaskBeanDelayed object = delayQueue.poll();
-			if (object != null) {
-				System.out.println(object.getTaskName());
+		TaskBeanDelayed taskBean = null;
+		{
+			taskBean = delayQueue.poll();
+			if (taskBean != null) {
+				System.out.println(taskBean.getTaskName());
 				System.out.println(new DateTime().toString(DATE_FORMAT_INSTANCE));
 			}
 		}
+		while (taskBean != null);
+			
 	}
 }
