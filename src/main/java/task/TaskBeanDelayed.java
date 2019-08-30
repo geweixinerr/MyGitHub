@@ -13,6 +13,8 @@ import lombok.Setter;
 @Getter
 public abstract class TaskBeanDelayed implements Delayed, Runnable {
 
+	private String taskId; //任务Id
+	
 	private String taskName; // 任务名称
 
 	private Runnable task; // 任务

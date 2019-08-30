@@ -13,6 +13,8 @@ public final class GlobalDelayQueueTask {
 	private GlobalDelayQueueTask() {
 	}
 
+	//private static final int CORE_SIZE = Runtime.getRuntime().availableProcessors();
+	
 	private static final GlobalDelayQueueTask INSTANCE = new GlobalDelayQueueTask();
 
 	private static final GlobalThreadPoolTaskExecutor THREAD_POOL = GlobalThreadPoolTaskExecutor.getInstance();
@@ -42,6 +44,7 @@ public final class GlobalDelayQueueTask {
 		factory.setScheduledExecutorTasks(task);
 		factory.setContinueScheduledExecutionAfterException(true); // 调度遇到异常后,调度计划继续执行.
 		factory.setThreadNamePrefix("SHOP_TASK_DELAY");
+		//factory.setPoolSize(CORE_SIZE);
 		factory.initialize();
 	}
 	
@@ -51,12 +54,16 @@ public final class GlobalDelayQueueTask {
 	public static GlobalDelayQueueTask getInstance() {
 		return INSTANCE;
 	}
-
-	/**
-	 * @author gewx 添加单个延迟任务
-	 **/
-	public void add(TaskBeanDelayed taskBean) {
-		delayQueue.add(taskBean);
-	}
 	
+	/**
+	 * @author gewx 覆盖任务执行
+	 * **/
+	public void CompareAndSet(TaskBeanDelayed taskBean) {
+		if (delayQueue.contains(taskBean)) {
+			delayQueue.remove(taskBean);
+			delayQueue.add(taskBean);
+		} else {
+			delayQueue.add(taskBean);
+		}
+	}
 }

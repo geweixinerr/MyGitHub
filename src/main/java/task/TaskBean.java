@@ -10,6 +10,8 @@ import lombok.Setter;
 @Getter
 public abstract class TaskBean implements Runnable {
 	
+	private String taskId; //任务Id
+	
 	private String taskName;
 	
 	private Runnable task;
