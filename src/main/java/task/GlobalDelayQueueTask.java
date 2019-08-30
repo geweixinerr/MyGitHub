@@ -58,7 +58,7 @@ public final class GlobalDelayQueueTask {
 	/**
 	 * @author gewx 覆盖任务执行
 	 * **/
-	public void CompareAndSet(TaskBeanDelayed taskBean) {
+	public void compareAndSet(TaskBeanDelayed taskBean) {
 		if (delayQueue.contains(taskBean)) {
 			delayQueue.remove(taskBean);
 			delayQueue.add(taskBean);
