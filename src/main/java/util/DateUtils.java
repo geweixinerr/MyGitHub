@@ -4,7 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import org.joda.time.DateTime;
+import org.joda.time.Interval;
 import org.joda.time.Period;
+import org.joda.time.PeriodType;
 
 import io.netty.util.concurrent.FastThreadLocal;
 
@@ -43,11 +45,21 @@ public final class DateUtils {
 	}
 	
 	/**
-	 * @author gewx 计算时间差,RPC请求耗时,单位:毫秒
+	 * @author gewx 计算时间差[同位之间的差异]
 	 **/
 	public static Integer timeDiffForMilliSecond(DateTime date1, DateTime date2) {
 		Period p2 = new Period(date1, date2);
 		int seconds = p2.getSeconds(); // 相差的秒
 		return seconds * 1000 + p2.getMillis();
+	}
+	
+	/**
+	 * @author gewx 计算时间差[累计单位的时间差值]
+	 * **/
+	public static Integer timeDiffForMilliSecond(DateTime date1, DateTime date2, PeriodType type) {
+	    Interval interval = new Interval(date1, date2);
+	    //Period p2 = interval.toPeriod(); //等同于 Period p2 = new Period(date1, date2);
+	    Period pDate = interval.toPeriod(type);
+	    return pDate.getSeconds(); //默认返回差值秒
 	}
 }
