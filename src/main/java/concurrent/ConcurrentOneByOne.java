@@ -5,14 +5,14 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import exception.ConcurrentException;
 
 /**
  * @author gewx 并发处理,基于Redis setNx控制
  **/
-@Service
+@Component
 public final class ConcurrentOneByOne {
 
 	private static final String VALUE = "true";
