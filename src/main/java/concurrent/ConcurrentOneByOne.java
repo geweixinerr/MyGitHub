@@ -77,9 +77,9 @@ public final class ConcurrentOneByOne {
 		try {
 			redisTemplate.delete(key.get());
 		} finally {
-			key.set(null);
-			timeOut.set(null);
-			tips.set(null);
+			key.remove();
+			timeOut.remove();
+			tips.remove();
 		}
 	}
 }
