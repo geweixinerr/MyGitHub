@@ -19,28 +19,28 @@ public final class ConcurrentOneByOne {
 
 	private static final int DEFAULT_TIME_OUT = 15;
 
+	private static final ThreadLocal<String> KEY = new ThreadLocal<>();
+
+	private static final ThreadLocal<Integer> TIME_OUT = new ThreadLocal<>();
+
+	private static final ThreadLocal<String> TIPS = new ThreadLocal<>();
+	
 	@Autowired
 	private RedisTemplate<String, String> redisTemplate;
 
-	private ThreadLocal<String> key = new ThreadLocal<>();
-
-	private ThreadLocal<Integer> timeOut = new ThreadLocal<>();
-
-	private ThreadLocal<String> tips = new ThreadLocal<>();
-
 	public ConcurrentOneByOne addConcurrentKey(String _key) {
-		key.set(_key);
-		timeOut.set(DEFAULT_TIME_OUT);
+		KEY.set(_key);
+		TIME_OUT.set(DEFAULT_TIME_OUT);
 		return this;
 	}
 
 	public ConcurrentOneByOne addKeyTimeOut(Integer _timeOut) {
-		timeOut.set(_timeOut);
+		TIME_OUT.set(_timeOut);
 		return this;
 	}
 
 	public ConcurrentOneByOne tips(String _tips) {
-		tips.set(_tips);
+		TIPS.set(_tips);
 		return this;
 	}
 
@@ -55,14 +55,14 @@ public final class ConcurrentOneByOne {
 	}
 
 	private void before() {
-		String _key = key.get();
+		String _key = KEY.get();
 		if (StringUtils.isBlank(_key)) {
 			throw new ConcurrentException("Concurrent Key is Not Empty~");
 		}
 
 		boolean isSet = redisTemplate.opsForValue().setIfAbsent(_key, VALUE);
 		if (!isSet) {
-			String _tips = tips.get();
+			String _tips = TIPS.get();
 			if (StringUtils.isNotBlank(_tips)) {
 				throw new ConcurrentException(_tips);
 			} else {
@@ -70,16 +70,16 @@ public final class ConcurrentOneByOne {
 			}
 		}
 		// 此处命令存在连接中断的问题,即过期命令设置失败.
-		redisTemplate.expire(_key, timeOut.get(), TimeUnit.SECONDS);
+		redisTemplate.expire(_key, TIME_OUT.get(), TimeUnit.SECONDS);
 	}
 
 	private void after() {
 		try {
-			redisTemplate.delete(key.get());
+			redisTemplate.delete(KEY.get());
 		} finally {
-			key.remove();
-			timeOut.remove();
-			tips.remove();
+			KEY.remove();
+			TIME_OUT.remove();
+			TIPS.remove();
 		}
 	}
 }
