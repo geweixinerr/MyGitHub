@@ -425,6 +425,7 @@
 					<source>1.8</source>
 					<target>1.8</target>
 					<encoding>UTF-8</encoding>
+					<compilerArgument>-Xlint:unchecked</compilerArgument>
 				</configuration>
 			</plugin>
 
@@ -502,11 +503,12 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-compiler-plugin</artifactId>
-						<version>3.8.0</version>
+						<version>3.8.1</version>
 						<configuration>
 							<source>1.7</source>
 							<target>1.7</target>
 							<encoding>UTF-8</encoding>
+							<compilerArgument>-Xlint:unchecked</compilerArgument>
 							<!-- 可以不加 <verbose>true</verbose> <fork>true</fork> <executable>c:\Java\jdk1.7.0_80\jdk1.7.0_80\bin\javac</executable> -->
 						</configuration>
 					</plugin>
