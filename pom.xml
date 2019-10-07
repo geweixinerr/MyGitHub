@@ -296,11 +296,13 @@
 			<version>2.3.0</version>
 		</dependency>
 
+        <!-- 
 		<dependency>
 			<groupId>org.apache.kafka</groupId>
 			<artifactId>kafka-streams</artifactId>
 			<version>2.3.0</version>
 		</dependency>
+         -->
 
 		<!-- 硬件采集开源工具 -->
 		<dependency>
@@ -341,7 +343,6 @@
 			<artifactId>javaparser-core-serialization</artifactId>
 			<version>3.14.9</version>
 		</dependency>
-
 		<!-- Java AST 语法树 [end] -->
 
 		<dependency>
