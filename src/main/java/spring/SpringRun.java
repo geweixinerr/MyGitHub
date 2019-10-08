@@ -28,7 +28,5 @@ public final class SpringRun {
 		TransCashIntf cashObject = object.getInstance();
 		//cashObject.moveMoney(null);
 		cashObject.calculateMoney(new BigDecimal("100"));
-		System.out.println("执行完毕--->success!");
-		System.out.println("执行完毕--->success!");
 	}
 }
