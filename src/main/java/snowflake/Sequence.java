@@ -38,7 +38,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public final class Sequence {
 
     /**
-     * 起始时间戳
+               * 起始时间戳
      **/
     private final static long START_TIME = 1519740777809L;
 
@@ -51,7 +51,7 @@ public final class Sequence {
      **/
     private final static long WORKER_ID_BITS = 8L;
     /**
-     * 序列号占用的位数：12（表示只允许workId的范围为：0-4095）
+               * 序列号占用的位数：12（表示只允许workId的范围为：0-4095）
      **/
     private final static long SEQUENCE_BITS = 12L;
 
@@ -69,7 +69,7 @@ public final class Sequence {
     private final static long TIMESTAMP_LEFT_SHIFT = SEQUENCE_BITS + WORKER_ID_BITS + DATA_CENTER_ID_BITS;
 
     /**
-     * 用mask防止溢出:位与运算保证计算的结果范围始终是 0-4095
+               * 用mask防止溢出:位与运算保证计算的结果范围始终是 0-4095
      **/
     private final static long SEQUENCE_MASK = ~(-1L << SEQUENCE_BITS);
 
@@ -93,10 +93,10 @@ public final class Sequence {
     }
 
     /**
-     * 基于Snowflake创建分布式ID生成器
+               * 基于Snowflake创建分布式ID生成器
      *
-     * @param dataCenterId   数据中心ID,数据范围为0~255
-     * @param workerId       工作机器ID,数据范围为0~3
+     * @param dataCenterId   数据中心ID,数据范围为0~3
+     * @param workerId       工作机器ID,数据范围为0~255
      * @param clock          true表示解决高并发下获取时间戳的性能问题
      * @param timeOffset     允许时间回拨的毫秒量,建议5ms
      * @param randomSequence true表示使用毫秒内的随机序列(超过范围则取余)
@@ -117,7 +117,7 @@ public final class Sequence {
     }
 
     /**
-     * 获取ID
+               * 获取ID
      *
      * @return long
      */
@@ -182,7 +182,7 @@ public final class Sequence {
     }
 
     /**
-     * 保证返回的毫秒数在参数之后(阻塞到下一个毫秒，直到获得新的时间戳)——CAS
+               * 保证返回的毫秒数在参数之后(阻塞到下一个毫秒，直到获得新的时间戳)——CAS
      *
      * @param lastTimestamp last timestamp
      * @return next millis
@@ -198,7 +198,7 @@ public final class Sequence {
     }
 
     /**
-     * 获得系统当前毫秒时间戳
+               * 获得系统当前毫秒时间戳
      *
      * @return timestamp 毫秒时间戳
      */
@@ -207,7 +207,7 @@ public final class Sequence {
     }
 
     /**
-     * 用IP地址最后几个字节标示
+               * 用IP地址最后几个字节标示
      * <p>
      * eg:192.168.1.30->30
      *
