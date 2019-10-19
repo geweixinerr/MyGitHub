@@ -1,5 +1,7 @@
 package task;
 
+import java.util.concurrent.Callable;
+import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -39,5 +41,14 @@ public final class GlobalThreadPoolTaskExecutor {
 	
 	public void execute(TaskBeanDelayed taskBean) {
 		POOLTASKEXECUTOR.execute(taskBean);
+	}
+	
+	public void execute(Runnable runTask) {
+		POOLTASKEXECUTOR.execute(runTask);
+	}
+
+	public Future<?> execute(Callable<?> runTask) {
+		Future<?> future = POOLTASKEXECUTOR.submit(runTask);
+		return future;
 	}
 }
