@@ -1,5 +1,6 @@
 package page;
 
+import java.io.Serializable;
 import java.util.List;
 
 import lombok.Data;
@@ -8,7 +9,9 @@ import lombok.Data;
  * @author gewx 分页工具类
  * **/
 @Data
-public final class Page<T> {
+public final class Page<T> implements Serializable {
+
+	private static final long serialVersionUID = 7108964245494609558L;
 
 	private int totalNum; //总行
 	
