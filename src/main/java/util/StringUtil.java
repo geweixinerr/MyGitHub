@@ -1,6 +1,7 @@
 package util;
 
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.lang.reflect.Field;
@@ -179,9 +180,12 @@ public final class StringUtil {
 		return bool;
 	}
 
-
-
-	public static void printPOJO(Object c) {
+	/**
+	 * @author gewx 打印POJO对象
+	 * @param  实现Serializable接口的POJO
+	 * @return void
+	 * **/
+	public static void printPOJO(Serializable c) {
 		if (c != null) {
 			try {
 				Field[] field = c.getClass().getDeclaredFields();
