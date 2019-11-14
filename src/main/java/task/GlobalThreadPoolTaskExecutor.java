@@ -35,7 +35,7 @@ public final class GlobalThreadPoolTaskExecutor {
 		return INSTANCE;
 	}
 
-	public void execute(TaskBean taskBean) {
+	public void execute(BaseTaskBean taskBean) {
 		POOLTASKEXECUTOR.execute(taskBean);
 	}
 	

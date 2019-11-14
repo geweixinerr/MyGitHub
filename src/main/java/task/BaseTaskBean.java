@@ -8,7 +8,7 @@ import lombok.Setter;
  * **/
 @Setter
 @Getter
-public abstract class TaskBean implements Runnable {
+public abstract class BaseTaskBean implements Runnable {
 	
 	private String taskId; //任务Id
 	
