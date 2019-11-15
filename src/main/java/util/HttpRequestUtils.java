@@ -19,7 +19,7 @@ public final class HttpRequestUtils {
 	 * @return String
 	 **/
 	/*
-	public static String getRemoteAddrIP(HttpServletRequest request) {
+	public static String getRemoteAddrIp(HttpServletRequest request) {
 		String header = request.getHeader("X-Forwarded-For");
 		if (StringUtils.isBlank(header)) {
 			return request.getRemoteAddr();
