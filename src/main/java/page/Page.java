@@ -7,19 +7,34 @@ import lombok.Data;
 
 /**
  * @author gewx 分页工具类
- * **/
+ **/
 @Data
 public final class Page<T> implements Serializable {
 
-	private static final long serialVersionUID = 7108964245494609558L;
+	private static final long serialVersionUID = -4184578058752100571L;
 
-	private int totalNum; // 总行数
+	/**
+	 * 总行数
+	 **/
+	private int totalNum;
 
-	private int totalPageNum; // 总页数
+	/**
+	 * 总页数
+	 **/
+	private int totalPageNum;
 
-	private int pageSize; // 页行
+	/**
+	 * 页行
+	 **/
+	private int pageSize;
 
-	private int pageNum; // 页码
+	/**
+	 * 页码
+	 **/
+	private int pageNum;
 
-	private List<T> page; // 当前页数据集
+	/**
+	 * 当前页数据集
+	 **/
+	private List<T> page;
 }
