@@ -2,7 +2,7 @@ package task.business;
 
 import org.apache.commons.lang3.StringUtils;
 
-import task.TaskBeanDelayed;
+import task.BaseTaskBeanDelayed;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author gewx 店铺微信图文消息延迟推送Bean
  **/
 @Slf4j
-public class WxMsgPushTaskBeanDelayed extends TaskBeanDelayed {
+public class WxMsgPushTaskBeanDelayed extends BaseTaskBeanDelayed {
 
 	@Override
 	public void run() {

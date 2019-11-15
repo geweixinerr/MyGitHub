@@ -19,9 +19,9 @@ public final class GlobalDelayQueueTask {
 
 	private static final GlobalThreadPoolTaskExecutor THREAD_POOL = GlobalThreadPoolTaskExecutor.getInstance();
 	
-	private static final DelayQueue<TaskBeanDelayed> delayQueue = new DelayQueue<TaskBeanDelayed>();
+	private static final DelayQueue<BaseTaskBeanDelayed> DELAY_QUEUE = new DelayQueue<BaseTaskBeanDelayed>();
 
-	private static final ScheduledExecutorFactoryBean factory = new ScheduledExecutorFactoryBean();
+	private static final ScheduledExecutorFactoryBean SCHEDULED_FACTORY = new ScheduledExecutorFactoryBean();
 
 	static {
 		ScheduledExecutorTask task = new ScheduledExecutorTask();
@@ -31,9 +31,9 @@ public final class GlobalDelayQueueTask {
 		task.setRunnable(new Runnable() {
 			@Override
 			public void run() {
-				TaskBeanDelayed taskBean = null;
+				BaseTaskBeanDelayed taskBean = null;
 				do {
-					taskBean = delayQueue.poll();
+					taskBean = DELAY_QUEUE.poll();
 					if (taskBean != null) {
 						THREAD_POOL.execute(taskBean);
 					}
@@ -41,11 +41,11 @@ public final class GlobalDelayQueueTask {
 			}
 		});
 
-		factory.setScheduledExecutorTasks(task);
-		factory.setContinueScheduledExecutionAfterException(true); // 调度遇到异常后,调度计划继续执行.
-		factory.setThreadNamePrefix("SHOP_TASK_DELAY");
+		SCHEDULED_FACTORY.setScheduledExecutorTasks(task);
+		SCHEDULED_FACTORY.setContinueScheduledExecutionAfterException(true); // 调度遇到异常后,调度计划继续执行.
+		SCHEDULED_FACTORY.setThreadNamePrefix("SHOP_TASK_DELAY");
 		//factory.setPoolSize(CORE_SIZE);
-		factory.initialize();
+		SCHEDULED_FACTORY.initialize();
 	}
 	
 	/**
@@ -58,12 +58,12 @@ public final class GlobalDelayQueueTask {
 	/**
 	 * @author gewx 覆盖任务执行
 	 * **/
-	public void compareAndSet(TaskBeanDelayed taskBean) {
-		if (delayQueue.contains(taskBean)) {
-			delayQueue.remove(taskBean);
-			delayQueue.add(taskBean);
+	public void compareAndSet(BaseTaskBeanDelayed taskBean) {
+		if (DELAY_QUEUE.contains(taskBean)) {
+			DELAY_QUEUE.remove(taskBean);
+			DELAY_QUEUE.add(taskBean);
 		} else {
-			delayQueue.add(taskBean);
+			DELAY_QUEUE.add(taskBean);
 		}
 	}
 }

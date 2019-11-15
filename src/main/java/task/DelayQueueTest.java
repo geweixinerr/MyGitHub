@@ -14,7 +14,7 @@ public class DelayQueueTest {
 
 	private static final DateTimeFormatter DATE_FORMAT_INSTANCE = DateTimeFormat.forPattern(DATE_FORMAT);
 
-	public static DelayQueue<TaskBeanDelayed> delayQueue = new DelayQueue<TaskBeanDelayed>();
+	public static DelayQueue<BaseTaskBeanDelayed> delayQueue = new DelayQueue<BaseTaskBeanDelayed>();
 
 	public static void main(String[] args) {
 		DateTime thisDate = new DateTime();
@@ -48,7 +48,7 @@ public class DelayQueueTest {
 		delayQueue.add(test);	
 		delayQueue.add(test2);
 		delayQueue.add(_test);
-		TaskBeanDelayed taskBean = null;
+		BaseTaskBeanDelayed taskBean = null;
 		do {
 			taskBean = delayQueue.poll();
 			if (taskBean != null) {

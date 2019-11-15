@@ -11,15 +11,27 @@ import lombok.Setter;
  **/
 @Setter
 @Getter
-public abstract class TaskBeanDelayed implements Delayed, Runnable {
+public abstract class BaseTaskBeanDelayed implements Delayed, Runnable {
 
-	private String taskId; //任务Id
-	
-	private String taskName; // 任务名称
+	/**
+	 * 任务Id
+	 **/
+	private String taskId;
 
-	private Runnable task; // 任务
+	/**
+	 * 任务名称
+	 **/
+	private String taskName;
 
-	private long expire; // 延迟时间
+	/**
+	 * 延迟时间
+	 **/
+	private long expire;
+
+	/**
+	 * 任务主体
+	 **/
+	private Runnable task;
 
 	/**
 	 * 优先队列里面优先级规则 TimeUnit .MILLISECONDS 获取单位 为毫秒的时间戳

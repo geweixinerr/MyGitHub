@@ -5,15 +5,24 @@ import lombok.Setter;
 
 /**
  * @author gewx 任务列表
- * **/
+ **/
 @Setter
 @Getter
 public abstract class BaseTaskBean implements Runnable {
-	
-	private String taskId; //任务Id
-	
+
+	/**
+	 * 任务Id
+	 **/
+	private String taskId;
+
+	/**
+	 * 任务名称
+	 **/
 	private String taskName;
-	
+
+	/**
+	 * 任务主体
+	 **/
 	private Runnable task;
-	
+
 }

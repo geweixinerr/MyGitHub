@@ -19,11 +19,16 @@ public final class GlobalThreadPoolTaskExecutor {
 	private static final ThreadPoolTaskExecutor POOLTASKEXECUTOR = new ThreadPoolTaskExecutor();
 
 	static {
-		POOLTASKEXECUTOR.setQueueCapacity(Integer.MAX_VALUE); // 队列深度.
-		POOLTASKEXECUTOR.setCorePoolSize(CORE_SIZE); // 核心线程数.
-		POOLTASKEXECUTOR.setMaxPoolSize(CORE_SIZE); // 最大线程数.
-		POOLTASKEXECUTOR.setThreadNamePrefix("SHOP_TASK_"); // 线程名前缀.
-		POOLTASKEXECUTOR.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardPolicy()); // discard
+		// 队列深度.
+		POOLTASKEXECUTOR.setQueueCapacity(Integer.MAX_VALUE);
+		// 核心线程数.
+		POOLTASKEXECUTOR.setCorePoolSize(CORE_SIZE);
+		// 最大线程数.
+		POOLTASKEXECUTOR.setMaxPoolSize(CORE_SIZE);
+		// 线程名前缀.
+		POOLTASKEXECUTOR.setThreadNamePrefix("SHOP_TASK_");
+		// discard
+		POOLTASKEXECUTOR.setRejectedExecutionHandler(new ThreadPoolExecutor.DiscardPolicy());
 		POOLTASKEXECUTOR.initialize();
 
 		POOLTASKEXECUTOR.getThreadPoolExecutor().prestartAllCoreThreads();
@@ -38,11 +43,11 @@ public final class GlobalThreadPoolTaskExecutor {
 	public void execute(BaseTaskBean taskBean) {
 		POOLTASKEXECUTOR.execute(taskBean);
 	}
-	
-	public void execute(TaskBeanDelayed taskBean) {
+
+	public void execute(BaseTaskBeanDelayed taskBean) {
 		POOLTASKEXECUTOR.execute(taskBean);
 	}
-	
+
 	public void execute(Runnable runTask) {
 		POOLTASKEXECUTOR.execute(runTask);
 	}
