@@ -11,10 +11,6 @@ public class GcListTest {
 	public static void main(String[] args) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {		
 		SimpleList list = new SimpleList();
 		for (int i = 0; i < 10; i++) {
-			/**
-			 * 另一种思路: 避免StringBuilder内部的Arrays.copyOf 可以解决OOM.
-			 *StringBuilder sb = new StringBuilder(400000);
-			 * **/
 			StringBuilder sb = new StringBuilder();
 			for (int j = 0; j < 20000; j++) {
 				sb.append("2004年参演电视剧《与青春有关的日子》");
