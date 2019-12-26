@@ -11,8 +11,6 @@ public class TimeUtils {
 	public static void main(String[] args) {
 		long t1 = System.currentTimeMillis();
 		long t2 = TimeUnit.MICROSECONDS.convert(t1, TimeUnit.MILLISECONDS);
-		System.out.println("时间t1: " + t1);
-		System.out.println("时间t2: " + t2);
 		System.out.println("Java: " + t2);
 	}
 }
