@@ -5,13 +5,17 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 
 import net.sourceforge.pinyin4j.PinyinHelper;
 
 /**
- * @author gewx 拼音转换工具类
+ * 拼音转换工具类
+ * 
+ * @author gewx
  **/
 public final class PinYin4JUtils {
 
@@ -20,18 +24,24 @@ public final class PinYin4JUtils {
 	private static final Pattern PATTERN_NUMBER = Pattern.compile("\\d");
 
 	public static void main(String[] args) {
-		String val = "机械";
-		System.out.println(Arrays.toString(convertCNzhToPinYin(val)));
+		String value = "机械设备";
+		String[] valArray = convertCNzhToPinYinArray(value);
+		System.out.println("array: " + Arrays.toString(valArray));
+		String jcVal = Stream.of(valArray).map(val -> {
+			return Character.toString(val.charAt(0));
+		}).collect(Collectors.joining());
+
+		System.out.println("汉子首字母大写: " + jcVal.toUpperCase());
 	}
 
 	/**
-	 * 中文转拼音
+	 * 中文转拼音数组
 	 * 
 	 * @author gewx
 	 * @param hyVal 中文
-	 * @return 拼音数值
+	 * @return 拼音数值数组
 	 **/
-	public static String[] convertCNzhToPinYin(String hyVal) {
+	public static String[] convertCNzhToPinYinArray(String hyVal) {
 		if (StringUtils.isBlank(hyVal)) {
 			return Collections.emptyList().toArray(new String[] {});
 		}
@@ -46,5 +56,20 @@ public final class PinYin4JUtils {
 			}
 		}
 		return dataList.toArray(new String[] {});
+	}
+
+	/**
+	 * 中文转拼音首字符大写
+	 * 
+	 * @author gewx
+	 * @param hyVal 中文
+	 * @return 拼音数值
+	 **/
+	public static String convertCNzhToPinYinVal(String hyVal) {
+		String[] valArray = convertCNzhToPinYinArray(hyVal);
+
+		return Stream.of(valArray).map(val -> {
+			return Character.toString(val.charAt(0));
+		}).collect(Collectors.joining());
 	}
 }
