@@ -6,12 +6,14 @@ import java.util.List;
 import lombok.Data;
 
 /**
- * @author gewx 分页工具类
+ * 分页工具类
+ * 
+ * @author gewx
  **/
 @Data
 public final class Page<T> implements Serializable {
 
-	private static final long serialVersionUID = -4184578058752100571L;
+	private static final long serialVersionUID = 6677852537002542077L;
 
 	/**
 	 * 总行数

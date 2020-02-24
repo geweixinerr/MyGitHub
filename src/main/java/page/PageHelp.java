@@ -7,14 +7,22 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 /**
- * @author gewx 分页辅助工具类
+ * 分页辅助工具类
+ * 
+ * @author gewx
  **/
 public final class PageHelp {
 
+	// 校验数值ZERO
 	private static final int ZERO = 0;
 
+	// 默认页码
+	private static final int DEFAULT_PAGENUM = 1;
+
 	/**
-	 * @author gewx 分页辅助方法
+	 * 分页辅助方法
+	 * 
+	 * @author gewx
 	 * @param count 待分页数据集总数, pageList 当前页数据集, pageNum 页码, pageSize 页行
 	 * @return 分页对象Page
 	 **/
@@ -23,7 +31,7 @@ public final class PageHelp {
 		Page<T> page = new Page<>();
 		page.setTotalNum(ZERO);
 		page.setTotalPageNum(ZERO);
-		page.setPageNum(ZERO >= pageNum ? 1 : pageNum);
+		page.setPageNum(ZERO >= pageNum ? DEFAULT_PAGENUM : pageNum);
 		page.setPageSize(pageSize);
 		page.setPage(Collections.emptyList());
 
@@ -44,5 +52,4 @@ public final class PageHelp {
 
 		return page;
 	}
-
 }
