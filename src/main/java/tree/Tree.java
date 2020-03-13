@@ -48,6 +48,18 @@ public final class Tree {
 	}
 
 	/**
+	 * 取出某个节点直至末尾叶子节点的数据
+	 * 
+	 * @author gewx
+	 * @param node     叶子节点
+	 * @param nodeList 数据节点集合
+	 * @return 解析完成后的树状结果
+	 **/
+	public static void getNodeJson(Node node, List<Node> nodeList) {
+		recursion(node, nodeList);
+	}
+
+	/**
 	 * 倒序递归检索所有父节点,由下往上直到所有根节点
 	 * 
 	 * @author gewx
@@ -182,18 +194,23 @@ public final class Tree {
 
 	public static void main(String[] args) {
 		List<Node> array = new ArrayList<>();
-		array.add(new Tree.Node("CODE_00", "系统管理员", "M", "0101", "#", "0", 0));
+		array.add(new Tree.Node("CODE_00", "用户管理", "M", "0101", "#", "0", 0));
 		array.add(new Tree.Node("CODE_01", "管理界面", "M", "0102", "#", "0", 0));
-		array.add(new Tree.Node("CODE_02", "管理界面", "C", "010101", "http://www.baidu.com", "CODE_00", 0));
-		array.add(new Tree.Node("CODE_03", "管理界面", "C", "010201", "http://www.baidu.com", "CODE_01", 0));
+		array.add(new Tree.Node("CODE_02", "权限管理", "C", "010101", "http://www.baidu.com", "CODE_00", 0));
+		array.add(new Tree.Node("CODE_03", "内部管理", "C", "010201", "http://www.baidu.com", "CODE_01", 0));
 
-		array.add(new Tree.Node("CODE_04", "管理界面", "C", "010201", "http://www.baidu.com", "CODE_02", 0));
-		array.add(new Tree.Node("CODE_05", "管理界面", "C", "010201", "http://www.baidu.com", "CODE_02", 0));
-		array.add(new Tree.Node("CODE_06", "管理界面", "C", "010201", "http://www.baidu.com", "CODE_04", 0));
-		array.add(new Tree.Node("CODE_07", "管理界面", "C", "010201", "http://www.baidu.com", "CODE_03", 0));
+		array.add(new Tree.Node("CODE_04", "内部用户权限", "C", "010201", "http://www.baidu.com", "CODE_02", 0));
+		array.add(new Tree.Node("CODE_05", "外部用户权限", "C", "010201", "http://www.baidu.com", "CODE_02", 0));
+		array.add(new Tree.Node("CODE_06", "子权限", "C", "010201", "http://www.baidu.com", "CODE_04", 0));
+		array.add(new Tree.Node("CODE_07", "子系统内部管理", "C", "010201", "http://www.baidu.com", "CODE_03", 0));
 
 		List<Node> list = Tree.parse(array);
 		String val = JSON.toJSONString(list);
 		System.out.println(val);
+
+		// 取出当下节点下所有数据
+		Node node = new Tree.Node("CODE_01x", "系统管理员", "M", "0101", "#", "0", 0);
+		Tree.getNodeJson(node, array);
+		System.out.println(JSON.toJSONString(node));
 	}
 }
