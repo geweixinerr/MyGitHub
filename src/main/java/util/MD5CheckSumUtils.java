@@ -9,7 +9,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import static util.StringUtil.getString;
 
 /**
- * @author gewx MD5摘要校验类
+ * @author gewx MD5摘要校验类,建议使用字典序完成.
  * **/
 public final class MD5CheckSumUtils {
 
