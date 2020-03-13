@@ -39,10 +39,11 @@ public final class Tree {
 		set.addAll(resultList);
 
 		resultList.clear();
-		set.stream().forEach(val -> {
-			resultList.add(val);
-			recursion(val, nodeList);
-		});
+		set.stream().sorted((o1, o2) -> o1.getSortNum().intValue() > o2.getSortNum().intValue() ? 1 : -1)
+				.forEach(val -> {
+					resultList.add(val);
+					recursion(val, nodeList);
+				});
 
 		return resultList;
 	}
@@ -89,7 +90,7 @@ public final class Tree {
 	 **/
 	private static void recursion(Node node, List<Node> nodeList) {
 		List<Node> childNodeList = nodeList.stream().filter(val -> val.getParentId().equals(node.getMenuId()))
-				.collect(Collectors.toList());
+				.sorted((o1, o2) -> o1.getSortNum().intValue() > o2.getSortNum() ? 1 : -1).collect(Collectors.toList());
 		if (childNodeList.size() != 0) {
 			node.setChildren(childNodeList);
 			childNodeList.stream().forEach(val -> {
@@ -195,12 +196,12 @@ public final class Tree {
 	public static void main(String[] args) {
 		List<Node> array = new ArrayList<>();
 		array.add(new Tree.Node("CODE_00", "用户管理", "M", "0101", "#", "0", 0));
-		array.add(new Tree.Node("CODE_01", "管理界面", "M", "0102", "#", "0", 0));
+		array.add(new Tree.Node("CODE_01", "管理界面", "M", "0102", "#", "0", 1));
 		array.add(new Tree.Node("CODE_02", "权限管理", "C", "010101", "http://www.baidu.com", "CODE_00", 0));
 		array.add(new Tree.Node("CODE_03", "内部管理", "C", "010201", "http://www.baidu.com", "CODE_01", 0));
 
 		array.add(new Tree.Node("CODE_04", "内部用户权限", "C", "010201", "http://www.baidu.com", "CODE_02", 0));
-		array.add(new Tree.Node("CODE_05", "外部用户权限", "C", "010201", "http://www.baidu.com", "CODE_02", 0));
+		array.add(new Tree.Node("CODE_05", "外部用户权限", "C", "010201", "http://www.baidu.com", "CODE_02", 1));
 		array.add(new Tree.Node("CODE_06", "子权限", "C", "010201", "http://www.baidu.com", "CODE_04", 0));
 		array.add(new Tree.Node("CODE_07", "子系统内部管理", "C", "010201", "http://www.baidu.com", "CODE_03", 0));
 
