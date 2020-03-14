@@ -1,5 +1,6 @@
 package minio;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -70,6 +71,23 @@ public enum MinioComponent {
 		MinioClient minioClient = container.get(MINIO_CLIENT_KEY);
 		try (final InputStream _input = input) {
 			minioClient.putObject(bucketName, objectName, _input, null, null, null, null);
+		}
+	}
+
+	/**
+	 * 上传对象,对象上传完毕自动关闭输入流
+	 * 
+	 * @author gewx
+	 * @param bucketName 桶名称
+	 * @param objectName 对象名称
+	 * @param byteArray  字节数组
+	 * @throws Exception
+	 * @return void
+	 **/
+	public void putObject(String bucketName, String objectName, byte[] byteArray) throws Exception {
+		MinioClient minioClient = container.get(MINIO_CLIENT_KEY);
+		try (final ByteArrayInputStream input = new ByteArrayInputStream(byteArray)) {
+			minioClient.putObject(bucketName, objectName, input, null, null, null, null);
 		}
 	}
 
