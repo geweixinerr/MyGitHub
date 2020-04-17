@@ -26,21 +26,21 @@ public final class PageHelp {
 	 * @param count 待分页数据集总数, pageList 当前页数据集, pageNum 页码, pageSize 页行
 	 * @return 分页对象Page
 	 **/
-	public static <T extends Serializable, U extends Number> Page<T> limit(Supplier<U> count,
+	public static <T extends Serializable, U extends Number> Pages<T> limit(Supplier<U> count,
 			Supplier<List<T>> pageList, int pageNum, int pageSize) {
-		Page<T> page = new Page<>();
+		Pages<T> page = new Pages<>();
 		page.setTotalNum(ZERO);
 		page.setTotalPageNum(ZERO);
 		page.setPageNum(ZERO >= pageNum ? DEFAULT_PAGENUM : pageNum);
 		page.setPageSize(pageSize);
-		page.setPage(Collections.emptyList());
+		page.setPages(Collections.emptyList());
 
 		Optional<Integer> optTp = Optional.empty();
 		Number totalNum = count.get();
 		if (totalNum.intValue() != ZERO) {
 			page.setTotalNum(totalNum.intValue());
 			List<T> list = pageList.get();
-			page.setPage(list);
+			page.setPages(list);
 
 			int tp = totalNum.intValue() / pageSize;
 			if (totalNum.intValue() % pageSize != ZERO) {

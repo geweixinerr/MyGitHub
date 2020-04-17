@@ -11,14 +11,14 @@ import lombok.Data;
  * @author gewx
  **/
 @Data
-public final class Page<T> implements Serializable {
+public final class Pages<T> implements Serializable {
 
 	private static final long serialVersionUID = 6677852537002542077L;
 
 	/**
 	 * 总行数
 	 **/
-	private int totalNum;
+	private long totalNum;
 
 	/**
 	 * 总页数
@@ -38,5 +38,5 @@ public final class Page<T> implements Serializable {
 	/**
 	 * 当前页数据集
 	 **/
-	private List<T> page;
+	private List<T> pages;
 }
