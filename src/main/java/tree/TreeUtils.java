@@ -72,7 +72,7 @@ public final class TreeUtils {
 	}
 
 	/**
-	 * 递归检索所有子节点
+	 * 递归检索所有子节点,节点合并去重
 	 * 
 	 * @author gewx
 	 * @param node     根节点
@@ -80,7 +80,7 @@ public final class TreeUtils {
 	 * @return void
 	 **/
 	private static void recursion(Node node, List<Node> nodeList) {
-		List<Node> childNodeList = nodeList.stream().filter(val -> val.getParentId().equals(node.getId()))
+		List<Node> childNodeList = nodeList.stream().filter(val -> val.getParentId().equals(node.getId())).distinct()
 				.sorted((o1, o2) -> o1.getSortNum().intValue() > o2.getSortNum() ? 1 : -1).collect(Collectors.toList());
 		if (childNodeList.size() != 0) {
 			node.setChildren(childNodeList);
