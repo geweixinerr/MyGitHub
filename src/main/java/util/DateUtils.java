@@ -24,7 +24,7 @@ public final class DateUtils {
 	 **/
 	public static boolean validDate(String strDate, String strFormat) {
 		try {
-			DateTimeFormatter format = DateTimeFormat.forPattern("yyyy/MM/dd");
+			DateTimeFormatter format = DateTimeFormat.forPattern(strFormat);
 			format.parseDateTime(strDate);
 			return true;
 		} catch (IllegalArgumentException ex) {
