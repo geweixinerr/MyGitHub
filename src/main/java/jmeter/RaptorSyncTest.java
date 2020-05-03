@@ -12,7 +12,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import raptor.RaptorRpc;
-import raptor.core.client.NettyTestData;
 import raptor.core.client.RpcClient;
 import raptor.core.client.RpcClientTaskPool;
 import raptor.core.client.task.RpcClientMonitor;
@@ -59,11 +58,9 @@ public final class RaptorSyncTest extends AbstractJavaSamplerClient {
 		try {
 			// 组装发送消息
 			String message = "Netty RPC Send, Netty is VeryGood!";
-			NettyTestData data = new NettyTestData();
-
 			@SuppressWarnings("rawtypes")
 			RaptorRpc rpc = new RaptorRpc();
-			RpcResponseBody response = rpc.sendSyncMessage("mc", "LoginAuth", 5, data, message);
+			RpcResponseBody response = rpc.sendSyncMessage("mc", "LoginAuth", 5, message, message);
 			LOGGER.info("" + response);
 			result.setSuccessful(true);
 		} catch (Exception e) {
@@ -78,12 +75,11 @@ public final class RaptorSyncTest extends AbstractJavaSamplerClient {
 	public static void main(String[] args) throws RpcException {
 		// 组装发送消息
 		String message = "Netty RPC Send, Netty is VeryGood!";
-		NettyTestData data = new NettyTestData();
 
 		@SuppressWarnings("rawtypes")
 		RaptorRpc rpc = new RaptorRpc();
 
-		RpcResponseBody response = rpc.sendSyncMessage("mc", "LoginAuth", 5, data, message);
+		RpcResponseBody response = rpc.sendSyncMessage("mc", "LoginAuth", 5, message, message);
 		System.out.println("result : " + response);
 	}
 

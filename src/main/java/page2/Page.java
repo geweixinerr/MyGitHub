@@ -1,4 +1,4 @@
-package page;
+package page2;
 
 import java.io.Serializable;
 import java.util.List;

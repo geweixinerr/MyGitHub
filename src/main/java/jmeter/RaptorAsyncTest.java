@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 
 import raptor.RaptorRpc;
 import raptor.core.AbstractCallBack;
-import raptor.core.client.NettyTestData;
 import raptor.core.client.RpcClient;
 import raptor.core.client.RpcClientTaskPool;
 import raptor.core.client.task.RpcClientMonitor;
@@ -61,7 +60,6 @@ public final class RaptorAsyncTest extends AbstractJavaSamplerClient {
 		try {
 			// 组装发送消息
 			String message = "Netty RPC Send, Netty is VeryGood!";
-			NettyTestData data = new NettyTestData();
 
 			@SuppressWarnings("rawtypes")
 			RaptorRpc rpc = new RaptorRpc();
@@ -75,7 +73,7 @@ public final class RaptorAsyncTest extends AbstractJavaSamplerClient {
 				public void invoke(RpcRequestBody req, RpcResponseBody resp) {
 					LOGGER.info("" + req);
 				}
-			}, 5, data, message);
+			}, 5, message, message);
 			result.setSuccessful(true);
 		} catch (Exception e) {
 			result.setSuccessful(false);
@@ -89,8 +87,7 @@ public final class RaptorAsyncTest extends AbstractJavaSamplerClient {
 	public static void main(String[] args) throws RpcException {
 		// 组装发送消息
 		String message = "Netty RPC Send, Netty is VeryGood!";
-		NettyTestData data = new NettyTestData();
-
+		
 		@SuppressWarnings("rawtypes")
 		RaptorRpc rpc = new RaptorRpc();
 
@@ -103,7 +100,6 @@ public final class RaptorAsyncTest extends AbstractJavaSamplerClient {
 			public void invoke(RpcRequestBody req, RpcResponseBody resp) {
 			}
 
-		}, 5, data, message);
+		}, 5, message, message);
 	}
-
 }
