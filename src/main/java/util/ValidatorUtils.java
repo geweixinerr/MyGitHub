@@ -34,7 +34,7 @@ public final class ValidatorUtils {
 	 * @param args 过滤字段
 	 * @return 验证消息Bean
 	 **/
-	public static <T> FieldBean validator(List<T> list, boolean bool, String... args) {
+	public static <T> FieldBean validator(Collection<T> list, boolean bool, String... args) {
 		Validator validator = FACTORY.getValidator();
 		Iterator<T> it = list.iterator();
 		while (it.hasNext()) {
@@ -60,7 +60,7 @@ public final class ValidatorUtils {
 	 * @param args 过滤字段
 	 * @return 验证消息Bean
 	 **/
-	public static <T> FieldBean validator(List<T> list, String... args) {
+	public static <T> FieldBean validator(Collection<T> list, String... args) {
 		return validator(list, true, args);
 	}
 

@@ -6,7 +6,7 @@ public final class DateFormatMain {
 
 	public static void main(String[] args) {
 		Dto dto = new Dto();
-		dto.setDate("b");
+//		dto.setDate("2020/9/1");
 		
 		ValidatorUtils.FieldBean bean = ValidatorUtils.validator(dto);
 		if (bean.isSuccess()) {

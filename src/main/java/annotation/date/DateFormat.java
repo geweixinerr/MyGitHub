@@ -14,9 +14,9 @@ import javax.validation.Payload;
 @Constraint(validatedBy = { DateFormatValid.class }) // 指明验证类
 public @interface DateFormat {
 
-	String value() default "";
+	String value();
 
-	String message() default "日期格式缺失~";
+	String message() default "日期格式不匹配~";
 
 	boolean required() default false;
 
