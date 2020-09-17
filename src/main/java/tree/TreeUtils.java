@@ -72,6 +72,26 @@ public final class TreeUtils {
 	}
 
 	/**
+	 * 取出某个节点直至末尾叶子节点对象
+	 * 
+	 * @author gewx
+	 * @param nodeId     节点Id
+	 * @param nodeList   检索目标
+	 * @param resultList 结果
+	 * @return 节点对象集合
+	 **/
+	public static void searchNodeDown(String nodeId, List<Node> nodeList, List<Node> resultList) {
+		List<Node> childNodeList = nodeList.stream().filter(val -> val.getParentId().equals(nodeId)).distinct()
+				.sorted((o1, o2) -> o1.getSortNum().intValue() > o2.getSortNum() ? 1 : -1).collect(Collectors.toList());
+		if (childNodeList.size() != 0) {
+			resultList.addAll(childNodeList);
+			childNodeList.stream().forEach(val -> {
+				searchNodeDown(val.getId(), nodeList, resultList);
+			});
+		}
+	}
+	
+	/**
 	 * 取出某个节点直至根父节点对象
 	 * 
 	 * @author gewx
@@ -87,6 +107,25 @@ public final class TreeUtils {
 			Node parentNode = parentNodeList.get(0);
 			resultList.add(parentNode);
 			searchNodeUp(parentNode, nodeList, resultList);
+		}
+	}
+	
+	/**
+	 * 取出某个节点直至根父节点对象
+	 * 
+	 * @author gewx
+	 * @param parentId   父节点Id
+	 * @param nodeList   检索目标
+	 * @param resultList 结果
+	 * @return 节点对象集合
+	 **/
+	public static void searchNodeUp(String parentId, List<Node> nodeList, List<Node> resultList) {
+		List<Node> parentNodeList = nodeList.stream().filter(val -> val.getId().equals(parentId))
+				.collect(Collectors.toList());
+		if (parentNodeList.size() != 0) {
+			Node parentNode = parentNodeList.get(0);
+			resultList.add(parentNode);
+			searchNodeUp(parentNode.getParentId(), nodeList, resultList);
 		}
 	}
 	

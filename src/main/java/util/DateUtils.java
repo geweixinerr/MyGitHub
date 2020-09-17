@@ -4,7 +4,6 @@ import org.joda.time.*;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import java.text.ParseException;
 import java.util.Date;
 
 /**
@@ -38,12 +37,25 @@ public final class DateUtils {
 	 * @author gewx
 	 * @param strDate   日期字符串
 	 * @param strFormat 格式化字符
-	 * @throws ParseException
 	 * @return 日期对象
 	 **/
-	public static Date parseDate(String strDate, String strFormat) throws ParseException {
+	public static Date parseDate(String strDate, String strFormat) {
 		DateTimeFormatter format = DateTimeFormat.forPattern(strFormat);
 		return format.parseDateTime(strDate).toDate();
+	}
+
+	/**
+	 * 日期格式化
+	 *
+	 * @param date    要格式化的日期字段
+	 * @param hour    时
+	 * @param minutes 分
+	 * @param seconds 秒
+	 * @return 格式化后的日期
+	 */
+	public static Date formatDate(Date date, int hour, int minutes, int seconds) {
+		return new DateTime(date.getTime()).withHourOfDay(hour).withMinuteOfHour(minutes).withSecondOfMinute(seconds)
+				.toDate();
 	}
 
 	/**

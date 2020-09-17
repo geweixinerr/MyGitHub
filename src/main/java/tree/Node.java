@@ -16,6 +16,8 @@ import java.util.List;
  * 
  * @author gewx
  **/
+@Getter
+@Setter
 public class Node implements Serializable {
 
 	private static final long serialVersionUID = -4405388942387953237L;
@@ -23,29 +25,21 @@ public class Node implements Serializable {
 	/**
 	 * Id
 	 **/
-	@Getter
-	@Setter
 	protected String id;
 
 	/**
 	 * 父级Id
 	 **/
-	@Getter
-	@Setter
 	protected String parentId;
 
 	/**
 	 * 排序
 	 **/
-	@Getter
-	@Setter
 	protected Integer sortNum;
 
 	/**
 	 * 关联子节点
 	 **/
-	@Getter
-	@Setter
 	protected List<Node> children = new ArrayList<>();
 
 	@Override

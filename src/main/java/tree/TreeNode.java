@@ -10,6 +10,8 @@ import java.io.Serializable;
  *
  * @author gewx
  **/
+@Getter
+@Setter
 public final class TreeNode extends Node implements Serializable {
 
     private static final long serialVersionUID = 3564872935020099986L;
@@ -34,50 +36,36 @@ public final class TreeNode extends Node implements Serializable {
     /**
      * 菜单名称
      **/
-    @Getter
-    @Setter
     private String menuName;
 
     /**
      * 菜单类型
      **/
-    @Getter
-    @Setter
     private String menuType;
 
     /**
      * 菜单编码
      **/
-    @Getter
-    @Setter
     private String menuCode;
 
     /**
      * 菜单URL
      **/
-    @Getter
-    @Setter
     private String url;
 
     /**
      * 是否显示
      **/
-    @Getter
-    @Setter
     private String visible;
 
     /**
      * 菜单所属系统名称
      **/
-    @Getter
-    @Setter
     private String systemName;
 
     /**
      * 打开方式
      * **/
-    @Getter
-    @Setter
     private String openType;
     
     @Override
