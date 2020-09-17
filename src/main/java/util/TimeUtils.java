@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 public class TimeUtils {
 
 	public TimeUtils() {
-
+		System.out.println("Hello");
 	}
 
 	public static void main(String[] args) {
