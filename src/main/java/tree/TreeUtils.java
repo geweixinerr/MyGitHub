@@ -30,7 +30,7 @@ public final class TreeUtils {
 		set.addAll(resultList);
 
 		resultList.clear();
-		set.stream().sorted((o1, o2) -> o1.getSortNum().intValue() > o2.getSortNum().intValue() ? 1 : -1)
+		set.stream().sorted((o1, o2) -> o1.getSortNum().compareTo(o2.getSortNum()))
 				.forEach(val -> {
 					resultList.add(val);
 					recursion(val, nodeList);
@@ -62,7 +62,7 @@ public final class TreeUtils {
 	 **/
 	public static void searchNodeDown(Node node, List<Node> nodeList, List<Node> resultList) {
 		List<Node> childNodeList = nodeList.stream().filter(val -> val.getParentId().equals(node.getId())).distinct()
-				.sorted((o1, o2) -> o1.getSortNum().intValue() > o2.getSortNum() ? 1 : -1).collect(Collectors.toList());
+				.sorted((o1, o2) -> o1.getSortNum().compareTo(o2.getSortNum())).collect(Collectors.toList());
 		if (childNodeList.size() != 0) {
 			resultList.addAll(childNodeList);
 			childNodeList.stream().forEach(val -> {
@@ -82,7 +82,7 @@ public final class TreeUtils {
 	 **/
 	public static void searchNodeDown(String nodeId, List<Node> nodeList, List<Node> resultList) {
 		List<Node> childNodeList = nodeList.stream().filter(val -> val.getParentId().equals(nodeId)).distinct()
-				.sorted((o1, o2) -> o1.getSortNum().intValue() > o2.getSortNum() ? 1 : -1).collect(Collectors.toList());
+				.sorted((o1, o2) -> o1.getSortNum().compareTo(o2.getSortNum())).collect(Collectors.toList());
 		if (childNodeList.size() != 0) {
 			resultList.addAll(childNodeList);
 			childNodeList.stream().forEach(val -> {
@@ -175,7 +175,7 @@ public final class TreeUtils {
 	 **/
 	private static void recursion(Node node, List<Node> nodeList) {
 		List<Node> childNodeList = nodeList.stream().filter(val -> val.getParentId().equals(node.getId())).distinct()
-				.sorted((o1, o2) -> o1.getSortNum().intValue() > o2.getSortNum() ? 1 : -1).collect(Collectors.toList());
+				.sorted((o1, o2) ->o1.getSortNum().compareTo(o2.getSortNum())).collect(Collectors.toList());
 		if (childNodeList.size() != 0) {
 			node.setChildren(childNodeList);
 			childNodeList.stream().forEach(val -> {
